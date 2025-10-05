@@ -100,3 +100,7 @@ Tabs.Main2:AddButton({
     end
 })
 -- Không có 'end' hay '})' thừa ở đây. Script kết thúc gọn gàng.
+Tabs.Main3:AddButton({
+    Title="Foxname ",
+    Description="Script 99 nights in forest",
+    Callback=function()       loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()    
