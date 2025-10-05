@@ -47,9 +47,9 @@ local Tabs = {
 -- Thêm các nút chức năng (Giữ nguyên theo code bạn cung cấp)
 Tabs.Main0:AddButton({
     Title = "Discord",
-    Description = "TBoyRoblox Community",
+    Description = "TG Community",
     Callback = function()
-        setclipboard("https://discord.gg/tboyroblox-community-1253927333920899153")
+        setclipboard("https://discord.gg/MxSpY55t")
     end
 })
 
