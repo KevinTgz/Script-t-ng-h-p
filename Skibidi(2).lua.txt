@@ -2,6 +2,7 @@ local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 
+-- Thiết lập nút ẩn/hiện GUI
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -10,36 +11,41 @@ ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
-ImageButton.Draggable = true
+ImageButton.Draggable = true -- Có thể kéo di chuyển
 ImageButton.Image = "http://www.roblox.com/asset/?id=83190276951914"
 
 UICorner.CornerRadius = UDim.new(1, 10) 
 UICorner.Parent = ImageButton
 
+-- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
 ImageButton.MouseButton1Down:Connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
 end)
 
+-- Tải và khởi tạo thư viện Fluent UI
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-repeat wait() until game:IsLoaded()
+repeat wait() until game:IsLoaded() -- Đợi game tải xong
+
 local Window = Fluent:CreateWindow({
-    Title = "TBoy Roblox Tổng Hợp",
-    SubTitle = "Blox Fruit",
+    Title = "Cận đẹp trai ",
+    SubTitle = "Tổng hợp",
     TabWidth = 157,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true,
     Theme = "Amethyst",
-    MinimizeKey = Enum.KeyCode.End
+    MinimizeKey = Enum.KeyCode.End -- Phím End để ẩn/hiện
 })
 local Tabs = {
         Main0=Window:AddTab({ Title="Thông Tin" }),
-        Main1=Window:AddTab({ Title="Script Farm" }),
-        Main2=Window:AddTab({ Title="Farm Fruit" }),
-        Main3=Window:AddTab({ Title="Farm Chest" }),
+        Main1=Window:AddTab({ Title="Script Blox Fruit" }),
+        Main2=Window:AddTab({ Title="Plants vs Brainrot" }),
+        Main3=Window:AddTab({ Title="99 nights in forest" }),
         Main4=Window:AddTab({ Title="Script Hop" }),
-       Main5=Window:AddTab({ Title="lin tinh" }),
+        Main5=Window:AddTab({ Title="linh tinh" }),
 }
-    Tabs.Main0:AddButton({
+    
+-- Thêm các nút chức năng (Giữ nguyên theo code bạn cung cấp)
+Tabs.Main0:AddButton({
     Title = "Discord",
     Description = "TBoyRoblox Community",
     Callback = function()
@@ -47,39 +53,54 @@ local Tabs = {
     end
 })
 
-    Tabs.Main0:AddButton({
-    Title = "Youtuber",
-    Description = "TBoy Roblox",
+Tabs.Main0:AddButton({
+    Title = "Tiktok 1",
+    Description = "Cận•chơi•đồ",
     Callback = function()
-        setclipboard("https://www.youtube.com/@TBoyRoblox08")
+        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
     end
 })
 
-    Tabs.Main0:AddButton({
-    Title = "Youtuber",
-    Description = "TBoy Gamer",
+-- Tôi đã sửa lỗi trùng lặp tiêu đề "Tiktok" thành "Tiktok 2" để dễ phân biệt
+Tabs.Main0:AddButton({
+    Title = "Tiktok 2", 
+    Description = "Cận•chơi•đồ",
     Callback = function()
-        setclipboard("https://www.youtube.com/@TBoyGamer08")
+        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
     end
 })
     
-    Tabs.Main1:AddButton({
+Tabs.Main1:AddButton({
     Title="Redz Hub",
-    Description="",
+    Description="Script Blox Fruit",
     Callback=function()
 	  local Settings = {
-  JoinTeam = "Pirates"; -- Pirates/Marines
-  Translator = true; -- true/false
-}
+          JoinTeam = "Pirates"; -- Pirates/Marines
+          Translator = true; -- true/false
+      }
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))(Settings)
-  end
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))(Settings)
+    end
 })
 
 Tabs.Main1:AddButton({
     Title="GreenZ Hub",
-    Description="",
+    Description="Script Blox Fruit",
     Callback=function()
 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))()
-  end
+    end
+})
+
+-- Bắt đầu thêm các nút cho các Tab khác nếu cần...
+
+-- Ví dụ: Tab Plants vs Brainrot
+Tabs.Main2:AddButton({
+    Title = "Script PvB",
+    Description = "Dán script Plants vs Brainrot tại đây",
+    Callback = function()
+        -- Thay thế URL này bằng script Plants vs Brainrot
+        loadstring(game:HttpGet("https://example.com/plants_vs_brainrot_script.lua"))()
+    end
+})
+end
 })
