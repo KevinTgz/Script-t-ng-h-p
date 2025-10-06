@@ -1,4 +1,4 @@
-  local ScreenGui = Instance.new("ScreenGui")
+local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 
@@ -7,25 +7,23 @@ ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ScreenGui
--- ĐÃ SỬA: Đổi màu nền sang TRẮNG để Icon bánh răng đen hiện rõ
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
-ImageButton.Draggable = true -- Có thể kéo di chuyển
+ImageButton.Draggable = true 
 ImageButton.Image = "http://www.roblox.com/asset/?id=6207038140"
 
 UICorner.CornerRadius = UDim.new(1, 10) 
 UICorner.Parent = ImageButton
 
--- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
 ImageButton.MouseButton1Down:Connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
 end)
 
 -- Tải và khởi tạo thư viện Fluent UI
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-repeat wait() until game:IsLoaded() -- Đợi game tải xong
+repeat wait() until game:IsLoaded()
 
 local Window = Fluent:CreateWindow({
     Title = "Cận đẹp zai ",
@@ -34,7 +32,7 @@ local Window = Fluent:CreateWindow({
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true,
     Theme = "Amethyst",
-    MinimizeKey = Enum.KeyCode.End -- Phím End để ẩn/hiện
+    MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
         Main0=Window:AddTab({ Title="Thông Tin" }),
@@ -106,7 +104,7 @@ Group_PvB:AddButton({
 })
 
 --
--- Tab 99 nights in forest (MAIN3) - ĐÃ CÓ CON LĂN TỰ ĐỘNG KHI CÓ NHIỀU NÚT
+-- Tab 99 nights in forest (MAIN3)
 --
 local Group_99Nights = Tabs.Main3:AddGroup({ Title = "Loaders 99NIF" })
 Group_99Nights:AddButton({
@@ -147,7 +145,6 @@ Group_Steal:AddButton({
 
 --
 -- Tab Script troll (MAIN5)
---
 --
 local Group_Troll = Tabs.Main5:AddGroup({ Title = "Cập nhật sắp tới" })
 Group_Troll:AddButton({
