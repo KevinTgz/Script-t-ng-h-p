@@ -7,7 +7,8 @@ ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+-- KHUYẾN NGHỊ: Đổi màu nền sang trắng (255, 255, 255) để Icon bánh răng đen hiện rõ
+ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
@@ -85,13 +86,12 @@ Tabs.Main1:AddButton({
     end
 })
 
--- Ví dụ: Tab Plants vs Brainrot
+-- Tab Plants vs Brainrot
 Tabs.Main2:AddButton({
     Title = "Script Speedxhub",
     Description = "Script này cần get key",
     Callback = function()
-        -- Thay thế URL này bằng script Plants vs Brainrot
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
     end
 })
 
@@ -118,4 +118,26 @@ Tabs.Main3:AddButton({
     Callback=function()    
         loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
     end
-}) 
+})
+
+---
+-- THÊM NỘI DUNG VÀO TAB MỚI
+---
+
+-- Tab Steal a Brainrot (Main4)
+Tabs.Main4:AddButton({
+    Title="Steal Brainrot Script",
+    Description="Chức năng đang được cập nhật",
+    Callback=function()
+        setclipboard("Script Steal Brainrot sẽ được cập nhật sớm.")
+    end
+})
+
+-- Tab Script troll (Main5)
+Tabs.Main5:AddButton({
+    Title="Troll Script",
+    Description="Chức năng đang được cập nhật",
+    Callback=function()
+        setclipboard("Script troll sẽ được cập nhật sớm.")
+    end
+})
