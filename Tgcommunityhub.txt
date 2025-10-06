@@ -28,7 +28,7 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 repeat wait() until game:IsLoaded() -- Đợi game tải xong
 
 local Window = Fluent:CreateWindow({
-    Title = "Cận đẹp trai ",
+    Title = "Cận đẹp zai ",
     SubTitle = "Tổng hợp",
     TabWidth = 157,
     Size = UDim2.fromOffset(450, 300),
