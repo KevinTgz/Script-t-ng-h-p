@@ -100,27 +100,28 @@ Tabs.Main2:AddButton({
     end
 })
 
--- Tab 99 nights in forest (Foxname - 4 lần)
+-- Tab 99 nights in forest
 Tabs.Main3:AddButton({
-    Title="Foxname ", -- Đổi tên để tránh trùng lặp
+    Title="Foxname ",
     Description="Script 99 nights in forest",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
     end
 }) 
 
--- Nút Ringta đã sửa lỗi
 Tabs.Main3:AddButton({
     Title="Ringta ",
     Description="Script 99 nights in forest",
     Callback=function()    
         loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
     end
-}) -- <--- Dấu đóng đã được thêm vào!
+}) 
+
+-- Nút VoidWare đã sửa lỗi
 Tabs.Main3:AddButton({
     Title="VoidWare ",
     Description="Script 99 nights in forest",
     Callback=function()    
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
     end
-}) -- <--- Dấu đóng đã được thêm vào!
+}) -- <--- Dấu đóng }) đã được thêm vào đây để sửa lỗi!
