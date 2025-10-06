@@ -12,7 +12,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true -- Có thể kéo di chuyển
-ImageButton.Image = "http://www.roblox.com/asset/?id=125005151114555" -- Đã cập nhật asset ID
+ImageButton.Image = "http://www.roblox.com/asset/?id=125005151114555" -- Đã cập nhật asset ID (LƯU Ý: Nếu ảnh chưa duyệt, bạn có thể phải thay bằng ID khác)
 
 UICorner.CornerRadius = UDim.new(1, 10) 
 UICorner.Parent = ImageButton
@@ -117,11 +117,10 @@ Tabs.Main3:AddButton({
     end
 }) 
 
--- Nút VoidWare đã sửa lỗi
 Tabs.Main3:AddButton({
     Title="VoidWare ",
     Description="Script 99 nights in forest",
     Callback=function()    
         loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
     end
-}) -- <--- Dấu đóng }) đã được thêm vào đây để sửa lỗi!
+}) **})** -- <--- Dấu đóng đã được thêm vào để sửa lỗi!
