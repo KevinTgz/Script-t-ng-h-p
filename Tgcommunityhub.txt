@@ -40,8 +40,8 @@ local Tabs = {
         Main1=Window:AddTab({ Title="Script Blox Fruit" }),
         Main2=Window:AddTab({ Title="Plants vs Brainrot" }),
         Main3=Window:AddTab({ Title="99 nights in forest" }),
-        Main4=Window:AddTab({ Title="Script Hop" }),
-        Main5=Window:AddTab({ Title="linh tinh" }),
+        Main4=Window:AddTab({ Title="Steal a Brainrot" }),
+        Main5=Window:AddTab({ Title="Script troll" }),
 }
     
 -- Thêm các nút chức năng
@@ -70,15 +70,10 @@ Tabs.Main0:AddButton({
 })
     
 Tabs.Main1:AddButton({
-    Title="Redz Hub",
+    Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
-	  local Settings = {
-          JoinTeam = "Pirates"; -- Pirates/Marines
-          Translator = true; -- true/false
-      }
-
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))(Settings)
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
     end
 })
 
