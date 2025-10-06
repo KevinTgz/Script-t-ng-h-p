@@ -117,3 +117,10 @@ Tabs.Main3:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
     end
 }) -- <--- Dấu đóng đã được thêm vào!
+Tabs.Main3:AddButton({
+    Title="VoidWare ",
+    Description="Script 99 nights in forest",
+    Callback=function()    
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
+    end
+}) -- <--- Dấu đóng đã được thêm vào!
