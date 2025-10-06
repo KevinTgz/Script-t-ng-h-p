@@ -1,114 +1,133 @@
-local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
+-- Tắt GUI lỗi trước đó (nếu có)
+if _G.HubRunning then
+    _G.HubRunning:Destroy()
+end
 
--- Thiết lập nút ẩn/hiện GUI
-ScreenGui.Parent = game.CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+-- Khởi tạo GUI cơ bản
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "CustomHub_Candeptrai"
+MainFrame.Size = UDim2.new(0, 450, 0, 300)
+MainFrame.Position = UDim2.new(0.5, -225, 0.5, -150)
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.ZIndex = 10 
+MainFrame.Parent = game.CoreGui
+_G.HubRunning = MainFrame 
 
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
-ImageButton.Size = UDim2.new(0, 40, 0, 40)
-ImageButton.Draggable = true 
-ImageButton.Image = "http://www.roblox.com/asset/?id=6207038140"
+-- Tiêu đề
+local Header = Instance.new("TextLabel")
+Header.Text = "Cận đẹp zai | Tổng hợp"
+Header.Size = UDim2.new(1, 0, 0, 30)
+Header.Position = UDim2.new(0, 0, 0, 0)
+Header.BackgroundColor3 = Color3.fromRGB(80, 50, 100) -- Màu Tím Amethyst
+Header.TextColor3 = Color3.fromRGB(255, 255, 255)
+Header.Font = Enum.Font.SourceSansBold
+Header.TextSize = 18
+Header.Parent = MainFrame
 
-UICorner.CornerRadius = UDim.new(1, 10) 
-UICorner.Parent = ImageButton
+-- Nút đóng
+local CloseButton = Instance.new("TextButton")
+CloseButton.Text = "X"
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Position = UDim2.new(1, -30, 0, 0)
+CloseButton.BackgroundColor3 = Color3.fromRGB(150, 0, 0)
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextSize = 20
+CloseButton.Parent = MainFrame
 
--- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
-ImageButton.MouseButton1Down:Connect(function()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
 end)
 
--- Tải và khởi tạo thư viện VAPE V4 UI
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/vape/main/vape.lua"))()
+-- Tạo Frame cho các Tab
+local TabFrame = Instance.new("Frame")
+TabFrame.Size = UDim2.new(1, 0, 1, -30) -- Trừ đi chiều cao Header
+TabFrame.Position = UDim2.new(0, 0, 0, 30)
+TabFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TabFrame.Parent = MainFrame
 
--- Tên phím tắt đã được đặt ở nút ImageButton, sử dụng phím Insert thay cho End
-local ToggleKey = Enum.KeyCode.Insert 
-local MainGui = library:Load(ToggleKey)
+-- Tạo Layout cho Tab
+local TabList = Instance.new("UIListLayout")
+TabList.Padding = UDim.new(0, 5)
+TabList.SortOrder = Enum.SortOrder.LayoutOrder
+TabList.Parent = TabFrame
 
--- Cửa sổ chính
-local HubTab = MainGui:AddTab("Cận đẹp zai | Tổng hợp")
+-- Tạo các Tab
+local tabs = {}
+local TabNames = {"Thông Tin", "Script Blox Fruit", "Plants vs Brainrot", "99 nights in forest", "Steal a Brainrot", "Script troll"}
+local ScriptUrls = {
+    -- Thông Tin (Không có script)
+    nil,
+    -- Script Blox Fruit (W-Azure)
+    "https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua",
+    -- Plants vs Brainrot (Speedxhub)
+    "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua",
+    -- 99 nights in forest (Foxname)
+    "https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua",
+    -- Steal a Brainrot (Tạm thời)
+    nil,
+    -- Script troll (Tạm thời)
+    nil
+}
+local Descriptions = {
+    "Discord, Tiktok", 
+    "Load W-Azure", 
+    "Speedxhub (cần Key)", 
+    "Foxname Loader", 
+    "Cập nhật sắp tới", 
+    "Cập nhật sắp tới"
+}
 
---
--- Tab 1: Thông Tin
---
-local Info_Window = HubTab:AddWindow("Thông Tin")
+for i, name in ipairs(TabNames) do
+    local Button = Instance.new("TextButton")
+    Button.Name = name
+    Button.Text = name
+    Button.Size = UDim2.new(1, 0, 0, 40)
+    Button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.Font = Enum.Font.SourceSans
+    Button.TextSize = 16
+    Button.Parent = TabFrame
+    
+    local url = ScriptUrls[i]
+    local desc = Descriptions[i]
 
-Info_Window:AddParagraph("Liên kết", "Sử dụng các nút bên dưới để truy cập các kênh của chủ Hub.")
+    -- Thêm chức năng
+    if url then
+        Button.MouseButton1Click:Connect(function()
+            Button.Text = "Loading..."
+            loadstring(game:HttpGet(url))()
+            wait(2)
+            Button.Text = name
+        end)
+    else
+        -- Chức năng cho Tab Thông Tin
+        if name == "Thông Tin" then
+            Button.MouseButton1Click:Connect(function()
+                setclipboard("Hãy liên hệ Discord: https://discord.gg/MxSpY55t")
+            end)
+        else -- Tab tạm thời (Steal, Troll)
+            Button.MouseButton1Click:Connect(function()
+                Button.Text = desc .. " (Copied!)"
+                setclipboard(desc)
+                wait(2)
+                Button.Text = name
+            end)
+        end
+    end
+    
+    table.insert(tabs, Button)
+end
 
-Info_Window:AddButton("Discord - TG Community", function()
-    setclipboard("https://discord.gg/MxSpY55t")
+-- Nút Bật/Tắt Riêng Biệt (Nếu cần)
+local ToggleKey = Enum.KeyCode.Insert -- Đổi sang phím INSERT để tránh xung đột
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessedEvent)
+    if input.KeyCode == ToggleKey and not gameProcessedEvent then
+        MainFrame.Visible = not MainFrame.Visible
+    end
 end)
 
-Info_Window:AddButton("Tiktok 1 - Cận•chơi•đồ", function()
-    setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
-end)
-
-Info_Window:AddButton("Tiktok 2 - Cận•chơi•đồ", function()
-    setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
-end)
-
---
--- Tab 2: Script Blox Fruit
---
-local BloxFruit_Window = HubTab:AddWindow("Script Blox Fruit")
-
-BloxFruit_Window:AddParagraph("Loaders", "Chọn Loader để chạy script Blox Fruit mong muốn.")
-
-BloxFruit_Window:AddButton("W-Azure", function()
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
-end)
-
-BloxFruit_Window:AddButton("GreenZ Hub", function()
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))()
-end)
-
-
---
--- Tab 3: Plants vs Brainrot
---
-local PvB_Window = HubTab:AddWindow("Plants vs Brainrot")
-
-PvB_Window:AddParagraph("Loaders", "Script này cần get key để sử dụng.")
-
-PvB_Window:AddButton("Script Speedxhub", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
-end)
-
---
--- Tab 4: 99 nights in forest
---
-local NIF_Window = HubTab:AddWindow("99 nights in forest")
-
-NIF_Window:AddParagraph("Loaders 99NIF", "Các script tự động load game/farm.")
-
-NIF_Window:AddButton("Foxname", function()       
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
-end) 
-
-NIF_Window:AddButton("Ringta", function()    
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
-end) 
-
-NIF_Window:AddButton("VoidWare", function()    
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
-end)
-
---
--- Tab 5: Steal a Brainrot
---
-local Steal_Window = HubTab:AddWindow("Steal a Brainrot")
-Steal_Window:AddButton("Steal Brainrot Script (Updating)", function()
-    setclipboard("Script Steal Brainrot sẽ được cập nhật sớm.")
-end)
-
---
--- Tab 6: Script troll
---
-local Troll_Window = HubTab:AddWindow("Script troll")
-Troll_Window:AddButton("Troll Script (Updating)", function()
-    setclipboard("Script troll sẽ được cập nhật sớm.")
-end)
+print("Hub đã khởi tạo thành công! Nhấn phím INSERT để ẩn/hiện.")
