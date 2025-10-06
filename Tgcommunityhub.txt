@@ -92,11 +92,11 @@ Tabs.Main1:AddButton({
 
 -- Ví dụ: Tab Plants vs Brainrot
 Tabs.Main2:AddButton({
-    Title = "Script PvB",
-    Description = "Dán script Plants vs Brainrot tại đây",
+    Title = "Script Speedxhub",
+    Description = "Script này cần get key",
     Callback = function()
         -- Thay thế URL này bằng script Plants vs Brainrot
-        loadstring(game:HttpGet("https://example.com/plants_vs_brainrot_script.lua"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
     end
 })
 
