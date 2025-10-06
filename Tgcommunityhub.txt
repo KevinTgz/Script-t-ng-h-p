@@ -1,4 +1,4 @@
-local ScreenGui = Instance.new("ScreenGui")
+  local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 
@@ -7,8 +7,8 @@ ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ScreenGui
--- KHUYẾN NGHỊ: Đổi màu nền sang trắng (255, 255, 255) để Icon bánh răng đen hiện rõ
-ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
+-- ĐÃ SỬA: Đổi màu nền sang TRẮNG để Icon bánh răng đen hiện rõ
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
@@ -45,8 +45,11 @@ local Tabs = {
         Main5=Window:AddTab({ Title="Script troll" }),
 }
     
--- Thêm các nút chức năng
-Tabs.Main0:AddButton({
+--
+-- Tab Thông Tin (MAIN0)
+--
+local Group_Info = Tabs.Main0:AddGroup({ Title = "Liên kết" })
+Group_Info:AddButton({
     Title = "Discord",
     Description = "TG Community",
     Callback = function()
@@ -54,7 +57,7 @@ Tabs.Main0:AddButton({
     end
 })
 
-Tabs.Main0:AddButton({
+Group_Info:AddButton({
     Title = "Tiktok 1",
     Description = "Cận•chơi•đồ",
     Callback = function()
@@ -62,7 +65,7 @@ Tabs.Main0:AddButton({
     end
 })
 
-Tabs.Main0:AddButton({
+Group_Info:AddButton({
     Title = "Tiktok 2", 
     Description = "Cận•chơi•đồ",
     Callback = function()
@@ -70,7 +73,11 @@ Tabs.Main0:AddButton({
     end
 })
     
-Tabs.Main1:AddButton({
+--
+-- Tab Script Blox Fruit (MAIN1)
+--
+local Group_BloxFruit = Tabs.Main1:AddGroup({ Title = "Loaders" })
+Group_BloxFruit:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
@@ -78,7 +85,7 @@ Tabs.Main1:AddButton({
     end
 })
 
-Tabs.Main1:AddButton({
+Group_BloxFruit:AddButton({
     Title="GreenZ Hub",
     Description="Script Blox Fruit",
     Callback=function()
@@ -86,8 +93,11 @@ Tabs.Main1:AddButton({
     end
 })
 
--- Tab Plants vs Brainrot
-Tabs.Main2:AddButton({
+--
+-- Tab Plants vs Brainrot (MAIN2)
+--
+local Group_PvB = Tabs.Main2:AddGroup({ Title = "Loaders" })
+Group_PvB:AddButton({
     Title = "Script Speedxhub",
     Description = "Script này cần get key",
     Callback = function()
@@ -95,8 +105,11 @@ Tabs.Main2:AddButton({
     end
 })
 
--- Tab 99 nights in forest
-Tabs.Main3:AddButton({
+--
+-- Tab 99 nights in forest (MAIN3) - ĐÃ CÓ CON LĂN TỰ ĐỘNG KHI CÓ NHIỀU NÚT
+--
+local Group_99Nights = Tabs.Main3:AddGroup({ Title = "Loaders 99NIF" })
+Group_99Nights:AddButton({
     Title="Foxname ",
     Description="Script 99 nights in forest",
     Callback=function()       
@@ -104,7 +117,7 @@ Tabs.Main3:AddButton({
     end
 }) 
 
-Tabs.Main3:AddButton({
+Group_99Nights:AddButton({
     Title="Ringta ",
     Description="Script 99 nights in forest",
     Callback=function()    
@@ -112,7 +125,7 @@ Tabs.Main3:AddButton({
     end
 }) 
 
-Tabs.Main3:AddButton({
+Group_99Nights:AddButton({
     Title="VoidWare ",
     Description="Script 99 nights in forest",
     Callback=function()    
@@ -120,12 +133,11 @@ Tabs.Main3:AddButton({
     end
 })
 
----
--- THÊM NỘI DUNG VÀO TAB MỚI
----
-
--- Tab Steal a Brainrot (Main4)
-Tabs.Main4:AddButton({
+--
+-- Tab Steal a Brainrot (MAIN4)
+--
+local Group_Steal = Tabs.Main4:AddGroup({ Title = "Cập nhật sắp tới" })
+Group_Steal:AddButton({
     Title="Steal Brainrot Script",
     Description="Chức năng đang được cập nhật",
     Callback=function()
@@ -133,8 +145,12 @@ Tabs.Main4:AddButton({
     end
 })
 
--- Tab Script troll (Main5)
-Tabs.Main5:AddButton({
+--
+-- Tab Script troll (MAIN5)
+--
+--
+local Group_Troll = Tabs.Main5:AddGroup({ Title = "Cập nhật sắp tới" })
+Group_Troll:AddButton({
     Title="Troll Script",
     Description="Chức năng đang được cập nhật",
     Callback=function()
