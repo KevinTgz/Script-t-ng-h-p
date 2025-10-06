@@ -150,7 +150,10 @@ local Group_Troll = Tabs.Main5:AddGroup({ Title = "Cập nhật sắp tới" })
 Group_Troll:AddButton({
     Title="Troll Script",
     Description="Chức năng đang được cập nhật",
-    Callback=function()
+    Callback = function()
         setclipboard("Script troll sẽ được cập nhật sớm.")
     end
 })
+
+-- Lệnh quan trọng: Buộc Hub phải hoàn tất việc tạo và bắt đầu hiển thị
+Window:Begin() 
