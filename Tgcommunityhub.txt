@@ -102,28 +102,7 @@ Tabs.Main2:AddButton({
 
 -- Tab 99 nights in forest (Foxname - 4 lần)
 Tabs.Main3:AddButton({
-    Title="Foxname 1", -- Đổi tên để tránh trùng lặp
-    Description="Script 99 nights in forest",
-    Callback=function()       
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
-    end
-}) 
-Tabs.Main3:AddButton({
-    Title="Foxname 2", 
-    Description="Script 99 nights in forest",
-    Callback=function()       
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
-    end
-}) 
-Tabs.Main3:AddButton({
-    Title="Foxname 3",
-    Description="Script 99 nights in forest",
-    Callback=function()       
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
-    end
-}) 
-Tabs.Main3:AddButton({
-    Title="Foxname 4", 
+    Title="Foxname ", -- Đổi tên để tránh trùng lặp
     Description="Script 99 nights in forest",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
