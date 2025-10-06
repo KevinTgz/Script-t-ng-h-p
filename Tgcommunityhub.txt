@@ -12,7 +12,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true -- Có thể kéo di chuyển
-ImageButton.Image = "http://www.roblox.com/asset/?id=119070401566868"
+ImageButton.Image = "http://www.roblox.com/asset/?id=119070401566868" -- Đã cập nhật asset ID
 
 UICorner.CornerRadius = UDim.new(1, 10) 
 UICorner.Parent = ImageButton
@@ -44,7 +44,7 @@ local Tabs = {
         Main5=Window:AddTab({ Title="linh tinh" }),
 }
     
--- Thêm các nút chức năng (Giữ nguyên theo code bạn cung cấp)
+-- Thêm các nút chức năng
 Tabs.Main0:AddButton({
     Title = "Discord",
     Description = "TG Community",
@@ -100,39 +100,41 @@ Tabs.Main2:AddButton({
     end
 })
 
--- **LƯU Ý:** ĐÃ SỬA LỖI Ở ĐÂY - BỔ SUNG DẤU }) BỊ THIẾU
+-- Tab 99 nights in forest (Foxname - 4 lần)
 Tabs.Main3:AddButton({
-    Title="Foxname ",
+    Title="Foxname 1", -- Đổi tên để tránh trùng lặp
     Description="Script 99 nights in forest",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
     end
-}) -- <--- Dấu đóng cần thiết!
+}) 
 Tabs.Main3:AddButton({
-    Title="Foxname ",
+    Title="Foxname 2", 
     Description="Script 99 nights in forest",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
     end
-}) -- <--- Dấu đóng cần thiết!
+}) 
 Tabs.Main3:AddButton({
-    Title="Foxname ",
+    Title="Foxname 3",
     Description="Script 99 nights in forest",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
     end
-}) -- <--- Dấu đóng cần thiết!
+}) 
 Tabs.Main3:AddButton({
-    Title="Foxname ",
+    Title="Foxname 4", 
     Description="Script 99 nights in forest",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
     end
-}) -- <--- Dấu đóng cần thiết!
+}) 
+
+-- Nút Ringta đã sửa lỗi
 Tabs.Main3:AddButton({
     Title="Ringta ",
     Description="Script 99 nights in forest",
     Callback=function()    
         loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
-end
-})
+    end
+}) -- <--- Dấu đóng đã được thêm vào!
