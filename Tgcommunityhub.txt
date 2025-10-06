@@ -99,8 +99,12 @@ Tabs.Main2:AddButton({
         loadstring(game:HttpGet("https://example.com/plants_vs_brainrot_script.lua"))()
     end
 })
--- Không có 'end' hay '})' thừa ở đây. Script kết thúc gọn gàng.
+
+-- **LƯU Ý:** ĐÃ SỬA LỖI Ở ĐÂY - BỔ SUNG DẤU }) BỊ THIẾU
 Tabs.Main3:AddButton({
     Title="Foxname ",
     Description="Script 99 nights in forest",
-    Callback=function()       loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()    
+    Callback=function()       
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+    end
+}) -- <--- Dấu đóng cần thiết!
