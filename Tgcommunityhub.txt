@@ -1,116 +1,146 @@
+local ScreenGui = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
 
-local CoreGui = game:GetService("CoreGui")
-local MainGui = Instance.new("ScreenGui")
-MainGui.Name = "TG_Simple_Hub"
-MainGui.Parent = CoreGui
-MainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+-- Thiết lập nút ẩn/hiện GUI
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local Frame = Instance.new("Frame")
-Frame.Parent = MainGui
-Frame.Size = UDim2.new(0, 250, 0, 350)
-Frame.Position = UDim2.new(0.5, -125, 0.5, -175)
-Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Frame.BorderSizePixel = 0
-Frame.Draggable = true
+ImageButton.Parent = ScreenGui
+-- ĐÃ SỬA: Đổi màu nền sang TRẮNG (255, 255, 255) để Icon bánh răng đen hiện rõ
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
+ImageButton.Size = UDim2.new(0, 40, 0, 40)
+ImageButton.Draggable = true -- Có thể kéo di chuyển
+ImageButton.Image = "http://www.roblox.com/asset/?id=6207038140"
 
-local Title = Instance.new("TextLabel")
-Title.Parent = Frame
-Title.Size = UDim2.new(1, 0, 0, 30)
-Title.Position = UDim2.new(0, 0, 0, 0)
-Title.Text = "Cận Đẹp Trai - Hub Đơn Giản"
-Title.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.BorderSizePixel = 0
-Title.Font = Enum.Font.SourceSansBold
+UICorner.CornerRadius = UDim.new(1, 10) 
+UICorner.Parent = ImageButton
 
-local ListLayout = Instance.new("UIListLayout")
-ListLayout.Parent = Frame
-ListLayout.FillDirection = Enum.FillDirection.Vertical
-ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-ListLayout.Padding = UDim.new(0, 5)
-ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-ListLayout.StartCorner = Enum.Corner.TopLeft
-ListLayout.StartCorner = Enum.Corner.BottomRight
+-- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
+ImageButton.MouseButton1Down:Connect(function()
+    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
+end)
 
-local ScrollFrame = Instance.new("ScrollingFrame")
-ScrollFrame.Parent = Frame
-ScrollFrame.Size = UDim2.new(1, 0, 1, -30) -- -30 cho tiêu đề
-ScrollFrame.Position = UDim2.new(0, 0, 0, 30)
-ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Sẽ được cập nhật tự động
-ScrollFrame.BackgroundTransparency = 1
-ScrollFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
+-- Tải và khởi tạo thư viện Fluent UI
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+repeat wait() until game:IsLoaded() -- Đợi game tải xong
 
-local ButtonContainer = Instance.new("Frame")
-ButtonContainer.Parent = ScrollFrame
-ButtonContainer.Size = UDim2.new(1, 0, 1, 0)
-ButtonContainer.BackgroundTransparency = 1
-
-local ButtonLayout = Instance.new("UIListLayout")
-ButtonLayout.Parent = ButtonContainer
-ButtonLayout.FillDirection = Enum.FillDirection.Vertical
-ButtonLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-ButtonLayout.Padding = UDim.new(0, 5)
-ButtonLayout.SortOrder = Enum.SortOrder.LayoutOrder
-
--- Hàm tạo nút
-local function create_button(name, url_or_action, is_url)
-    local button = Instance.new("TextButton")
-    button.Parent = ButtonContainer
-    button.Size = UDim2.new(0.9, 0, 0, 40)
-    button.Text = name
-    button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.BorderSizePixel = 0
-    button.Font = Enum.Font.SourceSans
+local Window = Fluent:CreateWindow({
+    Title = "Cận đẹp trai ",
+    SubTitle = "Tổng hợp",
+    TabWidth = 157,
+    Size = UDim2.fromOffset(450, 300),
+    Acrylic = true,
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.End -- Phím End để ẩn/hiện
+})
+local Tabs = {
+        Main0=Window:AddTab({ Title="Thông Tin" }),
+        Main1=Window:AddTab({ Title="Script Blox Fruit" }),
+        Main2=Window:AddTab({ Title="Plants vs Brainrot" }),
+        Main3=Window:AddTab({ Title="99 nights in forest" }),
+        Main4=Window:AddTab({ Title="Steal a Brainrot" }),
+        Main5=Window:AddTab({ Title="Script troll" }),
+}
     
-    if is_url then
-        button.Text = name .. " (EXECUTE)"
-        button.MouseButton1Click:Connect(function()
-            Title.Text = "Đang tải: " .. name .. "..."
-            local success, script_loader = pcall(game.HttpGet, game, url_or_action)
-            if success and script_loader then
-                pcall(loadstring(script_loader))
-                Title.Text = "Đã thực thi " .. name
-            else
-                Title.Text = "LỖI TẢI: " .. name
-            end
-            wait(2)
-            Title.Text = "Cận Đẹp Trai - Hub Đơn Giản"
-        end)
-    else
-        -- Dùng cho các nút thông tin
-        button.MouseButton1Click:Connect(function()
-            url_or_action()
-            Title.Text = "Cận Đẹp Trai - Hub Đơn Giản"
-        end)
+-- **SỬA LỖI: SỬ DỤNG GROUP RỖNG ("") ĐỂ CÓ THANH CUỘN**
+
+-- Tab Thông Tin (MAIN0)
+local Group_Info = Tabs.Main0:AddGroup({ Title = "" }) 
+Group_Info:AddButton({
+    Title = "Discord",
+    Description = "TG Community",
+    Callback = function()
+        setclipboard("https://discord.gg/MxSpY55t")
     end
-    return button
-end
+})
+Group_Info:AddButton({
+    Title = "Tiktok 1",
+    Description = "Cận•chơi•đồ",
+    Callback = function()
+        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
+    end
+})
+Group_Info:AddButton({
+    Title = "Tiktok 2",
+    Description = "Cận•chơi•đồ",
+    Callback = function()
+        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
+    end
+})
 
--- Thêm tất cả các script
-create_button("--- SCRIPTS BLOX FRUIT ---", nil, false)
-create_button("W-Azure", "https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua", true)
-create_button("GreenZ Hub", "https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua", true)
+-- Tab Script Blox Fruit (MAIN1)
+local Group_BloxFruit = Tabs.Main1:AddGroup({ Title = "" }) 
+Group_BloxFruit:AddButton({
+    Title="W-Azure",
+    Description="Script Blox Fruit",
+    Callback=function()
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
+    end
+})
+Group_BloxFruit:AddButton({
+    Title="GreenZ Hub",
+    Description="Script Blox Fruit",
+    Callback=function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))()
+    end
+})
 
-create_button("--- SCRIPTS PLANTS VS BRAINROT ---", nil, false)
-create_button("Speedxhub (Cần Get Key)", "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true)
+-- Tab Plants vs Brainrot (MAIN2)
+local Group_PvB = Tabs.Main2:AddGroup({ Title = "" }) 
+Group_PvB:AddButton({
+    Title = "Script Speedxhub",
+    Description = "Script này cần get key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
+    end
+})
 
-create_button("--- SCRIPTS 99 NIGHTS IN FOREST ---", nil, false)
-create_button("Foxname", "https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua", true)
-create_button("Ringta", "https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua", true)
-create_button("VoidWare", "https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true)
+-- Tab 99 nights in forest (MAIN3)
+local Group_99Nights = Tabs.Main3:AddGroup({ Title = "" }) 
+Group_99Nights:AddButton({
+    Title="Foxname ",
+    Description="Script 99 nights in forest",
+    Callback=function()       
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+    end
+}) 
+Group_99Nights:AddButton({
+    Title="Ringta ",
+    Description="Script 99 nights in forest",
+    Callback=function()    
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
+    end
+}) 
+Group_99Nights:AddButton({
+    Title="VoidWare ",
+    Description="Script 99 nights in forest",
+    Callback=function()    
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
+    end
+})
 
-create_button("--- THÔNG TIN ---", nil, false)
-create_button("Copy Discord Link", function() setclipboard("https://discord.gg/MxSpY55t") Title.Text = "Đã copy Discord link!"; wait(2) end, false)
-create_button("Steal Brainrot Info", function() Title.Text = "Script Steal Brainrot sẽ được cập nhật sớm."; wait(2) end, false)
+-- Tab Steal a Brainrot (MAIN4)
+local Group_Steal = Tabs.Main4:AddGroup({ Title = "" }) 
+Group_Steal:AddButton({
+    Title="Steal Brainrot Script",
+    Description="Chức năng đang được cập nhật",
+    Callback=function()
+        setclipboard("Script Steal Brainrot sẽ được cập nhật sớm.")
+    end
+})
 
--- Cập nhật CanvasSize để thanh cuộn hoạt động
-local num_children = #ButtonContainer:GetChildren()
-local button_height = 40
-local padding = 5
-local total_content_height = num_children * (button_height + padding)
+-- Tab Script troll (MAIN5)
+local Group_Troll = Tabs.Main5:AddGroup({ Title = "" }) 
+Group_Troll:AddButton({
+    Title="Troll Script",
+    Description="Chức năng đang được cập nhật",
+    Callback=function()
+        setclipboard("Script troll sẽ được cập nhật sớm.")
+    end
+})
 
-ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, total_content_height + 10)
-
--- Buộc Hub hiển thị
-MainGui.Enabled = true
+-- Lệnh quan trọng: BUỘC Hub hiển thị
+Window:Show()
