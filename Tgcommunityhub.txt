@@ -1,87 +1,118 @@
--- HUB LUA THÔ HOÀN CHỈNH - KHÔNG DÙNG THƯ VIỆN GUI NÀO**
--- Đây là cách duy nhất để chạy tất cả các script mà Krnl không chặn
+-- HUB GIAO DIỆN CƠ BẢN LUA THÔ
+-- Được thiết kế để hoàn toàn tránh bị Krnl chặn vì không dùng thư viện ngoài.
 
 local CoreGui = game:GetService("CoreGui")
+local MainGui = Instance.new("ScreenGui")
+MainGui.Name = "TG_Simple_Hub"
+MainGui.Parent = CoreGui
+MainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- 1. Tạo GUI Tối thiểu để báo hiệu hoạt động
-local Notification = Instance.new("ScreenGui")
-Notification.Name = "TG_Hub_Status"
-Notification.Parent = CoreGui
-Notification.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local Frame = Instance.new("Frame")
+Frame.Parent = MainGui
+Frame.Size = UDim2.new(0, 250, 0, 350)
+Frame.Position = UDim2.new(0.5, -125, 0.5, -175)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.BorderSizePixel = 0
+Frame.Draggable = true
 
-local Label = Instance.new("TextLabel")
-Label.Parent = Notification
-Label.Size = UDim2.new(0, 300, 0, 80)
-Label.Position = UDim2.new(0.5, -150, 0.5, -40)
-Label.Text = "TG Hub Đang Khởi Động..."
-Label.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-Label.BorderSizePixel = 0
-Label.Font = Enum.Font.SourceSansBold
-Label.TextWrapped = true
+local Title = Instance.new("TextLabel")
+Title.Parent = Frame
+Title.Size = UDim2.new(1, 0, 0, 30)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.Text = "Cận Đẹp Trai - Hub Đơn Giản"
+Title.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BorderSizePixel = 0
+Title.Font = Enum.Font.SourceSansBold
 
--- 2. Hàm Thực thi Script (Hàm Chính)
-local function execute_loader(name, url)
-    Label.Text = "Đang tải: " .. name .. "..."
-    local success, script_loader = pcall(game.HttpGet, game, url)
+local ListLayout = Instance.new("UIListLayout")
+ListLayout.Parent = Frame
+ListLayout.FillDirection = Enum.FillDirection.Vertical
+ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+ListLayout.Padding = UDim.new(0, 5)
+ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+ListLayout.StartCorner = Enum.Corner.TopLeft
+ListLayout.StartCorner = Enum.Corner.BottomRight
+
+local ScrollFrame = Instance.new("ScrollingFrame")
+ScrollFrame.Parent = Frame
+ScrollFrame.Size = UDim2.new(1, 0, 1, -30) -- -30 cho tiêu đề
+ScrollFrame.Position = UDim2.new(0, 0, 0, 30)
+ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Sẽ được cập nhật tự động
+ScrollFrame.BackgroundTransparency = 1
+ScrollFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
+
+local ButtonContainer = Instance.new("Frame")
+ButtonContainer.Parent = ScrollFrame
+ButtonContainer.Size = UDim2.new(1, 0, 1, 0)
+ButtonContainer.BackgroundTransparency = 1
+
+local ButtonLayout = Instance.new("UIListLayout")
+ButtonLayout.Parent = ButtonContainer
+ButtonLayout.FillDirection = Enum.FillDirection.Vertical
+ButtonLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+ButtonLayout.Padding = UDim.new(0, 5)
+ButtonLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+-- Hàm tạo nút
+local function create_button(name, url_or_action, is_url)
+    local button = Instance.new("TextButton")
+    button.Parent = ButtonContainer
+    button.Size = UDim2.new(0.9, 0, 0, 40)
+    button.Text = name
+    button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.BorderSizePixel = 0
+    button.Font = Enum.Font.SourceSans
     
-    if success and script_loader then
-        Label.Text = "Thực thi: " .. name .. "..."
-        local exec_success, exec_result = pcall(loadstring(script_loader))
-        if exec_success then
-            Label.Text = "Đã thực thi " .. name .. " thành công!"
+    if is_url then
+        button.Text = name .. " (EXECUTE)"
+        button.MouseButton1Click:Connect(function()
+            Title.Text = "Đang tải: " .. name .. "..."
+            local success, script_loader = pcall(game.HttpGet, game, url_or_action)
+            if success and script_loader then
+                pcall(loadstring(script_loader))
+                Title.Text = "Đã thực thi " .. name
+            else
+                Title.Text = "LỖI TẢI: " .. name
+            end
             wait(2)
-        else
-            Label.Text = "LỖI THỰC THI: " .. name .. "\n" .. tostring(exec_result)
-            wait(4)
-        end
+            Title.Text = "Cận Đẹp Trai - Hub Đơn Giản"
+        end)
     else
-        Label.Text = "LỖI TẢI: " .. name .. "\nKiểm tra lại URL."
-        wait(4)
+        -- Dùng cho các nút thông tin
+        button.MouseButton1Click:Connect(function()
+            url_or_action()
+            Title.Text = "Cận Đẹp Trai - Hub Đơn Giản"
+        end)
     end
+    return button
 end
 
--- 3. Danh sách tất cả các script
-local ScriptList = {
-    -- Blox Fruit
-    { Name = "W-Azure", URL = "https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua" },
-    { Name = "GreenZ Hub (BF)", URL = "https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua" },
-    
-    -- Plants vs Brainrot
-    { Name = "Speedxhub", URL = "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua" },
-    
-    -- **99 Nights in Forest (Đã thêm lại)**
-    { Name = "Foxname (99NIF)", URL = "https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua" },
-    { Name = "Ringta (99NIF)", URL = "https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua" },
-    { Name = "VoidWare (99NIF)", URL = "https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua" },
+-- Thêm tất cả các script
+create_button("--- SCRIPTS BLOX FRUIT ---", nil, false)
+create_button("W-Azure", "https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua", true)
+create_button("GreenZ Hub", "https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua", true)
 
-    -- Các mục thông tin/troll (Chỉ là thông báo)
-    { Name = "Discord/Tiktok", URL = nil, Action = function() 
-        setclipboard("https://discord.gg/MxSpY55t")
-        Label.Text = "Đã copy Discord link và Tiktok link!"
-        wait(2)
-    end },
-    { Name = "Steal/Troll Info", URL = nil, Action = function() 
-        Label.Text = "Script Steal Brainrot và Troll sẽ được cập nhật sớm!"
-        wait(2)
-    end },
-}
+create_button("--- SCRIPTS PLANTS VS BRAINROT ---", nil, false)
+create_button("Speedxhub (Cần Get Key)", "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true)
 
--- 4. Chạy Từng Script (Bạn sẽ cần sửa lại logic này nếu không muốn chạy tự động)
-Label.Text = "Sẵn sàng chạy từng script!"
-wait(2)
+create_button("--- SCRIPTS 99 NIGHTS IN FOREST ---", nil, false)
+create_button("Foxname", "https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua", true)
+create_button("Ringta", "https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua", true)
+create_button("VoidWare", "https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true)
 
-for i, script_data in ipairs(ScriptList) do
-    if script_data.URL then
-        execute_loader(script_data.Name, script_data.URL)
-    elseif script_data.Action then
-        script_data.Action()
-    end
-end
+create_button("--- THÔNG TIN ---", nil, false)
+create_button("Copy Discord Link", function() setclipboard("https://discord.gg/MxSpY55t") Title.Text = "Đã copy Discord link!"; wait(2) end, false)
+create_button("Steal Brainrot Info", function() Title.Text = "Script Steal Brainrot sẽ được cập nhật sớm."; wait(2) end, false)
 
+-- Cập nhật CanvasSize để thanh cuộn hoạt động
+local num_children = #ButtonContainer:GetChildren()
+local button_height = 40
+local padding = 5
+local total_content_height = num_children * (button_height + padding)
 
--- 5. Xóa thông báo sau khi hoàn tất
-Label.Text = "Tất cả các script đã được thực thi!"
-wait(3)
-Label:Destroy()
-Notification:Destroy() 
+ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, total_content_height + 10)
+
+-- Buộc Hub hiển thị
+MainGui.Enabled = true
