@@ -1,5 +1,3 @@
--- HUB GIAO DIỆN CƠ BẢN LUA THÔ
--- Được thiết kế để hoàn toàn tránh bị Krnl chặn vì không dùng thư viện ngoài.
 
 local CoreGui = game:GetService("CoreGui")
 local MainGui = Instance.new("ScreenGui")
