@@ -1,122 +1,87 @@
--- Sử dụng Hydroxide UI - ÍT XUNG ĐỘT HƠN**
+-- HUB LUA THÔ HOÀN CHỈNH - KHÔNG DÙNG THƯ VIỆN GUI NÀO**
+-- Đây là cách duy nhất để chạy tất cả các script mà Krnl không chặn
 
-local Hydroxide = loadstring(game:HttpGet("https://raw.githubusercontent.com/Green-Script/Hydroxide-UI-v1/main/Source.lua"))()
+local CoreGui = game:GetService("CoreGui")
 
--- Cấu hình Hub chính
-local Window = Hydroxide:CreateWindow({
-    Title = "Cận đẹp trai - Tổng hợp",
-    Theme = "Dark", -- Chủ đề tối
-    MinimizeKey = Enum.KeyCode.End
-})
+-- 1. Tạo GUI Tối thiểu để báo hiệu hoạt động
+local Notification = Instance.new("ScreenGui")
+Notification.Name = "TG_Hub_Status"
+Notification.Parent = CoreGui
+Notification.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- Tạo các Tab
-local TabInfo = Window:CreateTab("Thông Tin")
-local TabBloxFruit = Window:CreateTab("Script Blox Fruit")
-local TabPvB = Window:CreateTab("Plants vs Brainrot")
-local Tab99Nights = Window:CreateTab("99 nights in forest")
-local TabSteal = Window:CreateTab("Steal a Brainrot")
-local TabTroll = Window:CreateTab("Script troll")
+local Label = Instance.new("TextLabel")
+Label.Parent = Notification
+Label.Size = UDim2.new(0, 300, 0, 80)
+Label.Position = UDim2.new(0.5, -150, 0.5, -40)
+Label.Text = "TG Hub Đang Khởi Động..."
+Label.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+Label.BorderSizePixel = 0
+Label.Font = Enum.Font.SourceSansBold
+Label.TextWrapped = true
 
---
--- Tab Thông Tin (Thông Tin)
---
-TabInfo:CreateSection("Liên kết")
-TabInfo:CreateButton({
-    Text = "Discord (TG Community)",
-    Callback = function()
+-- 2. Hàm Thực thi Script (Hàm Chính)
+local function execute_loader(name, url)
+    Label.Text = "Đang tải: " .. name .. "..."
+    local success, script_loader = pcall(game.HttpGet, game, url)
+    
+    if success and script_loader then
+        Label.Text = "Thực thi: " .. name .. "..."
+        local exec_success, exec_result = pcall(loadstring(script_loader))
+        if exec_success then
+            Label.Text = "Đã thực thi " .. name .. " thành công!"
+            wait(2)
+        else
+            Label.Text = "LỖI THỰC THI: " .. name .. "\n" .. tostring(exec_result)
+            wait(4)
+        end
+    else
+        Label.Text = "LỖI TẢI: " .. name .. "\nKiểm tra lại URL."
+        wait(4)
+    end
+end
+
+-- 3. Danh sách tất cả các script
+local ScriptList = {
+    -- Blox Fruit
+    { Name = "W-Azure", URL = "https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua" },
+    { Name = "GreenZ Hub (BF)", URL = "https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua" },
+    
+    -- Plants vs Brainrot
+    { Name = "Speedxhub", URL = "https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua" },
+    
+    -- **99 Nights in Forest (Đã thêm lại)**
+    { Name = "Foxname (99NIF)", URL = "https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua" },
+    { Name = "Ringta (99NIF)", URL = "https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua" },
+    { Name = "VoidWare (99NIF)", URL = "https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua" },
+
+    -- Các mục thông tin/troll (Chỉ là thông báo)
+    { Name = "Discord/Tiktok", URL = nil, Action = function() 
         setclipboard("https://discord.gg/MxSpY55t")
-    end
-})
+        Label.Text = "Đã copy Discord link và Tiktok link!"
+        wait(2)
+    end },
+    { Name = "Steal/Troll Info", URL = nil, Action = function() 
+        Label.Text = "Script Steal Brainrot và Troll sẽ được cập nhật sớm!"
+        wait(2)
+    end },
+}
 
-TabInfo:CreateButton({
-    Text = "Tiktok 1 (Cận•chơi•đồ)",
-    Callback = function()
-        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
-    end
-})
+-- 4. Chạy Từng Script (Bạn sẽ cần sửa lại logic này nếu không muốn chạy tự động)
+Label.Text = "Sẵn sàng chạy từng script!"
+wait(2)
 
-TabInfo:CreateButton({
-    Text = "Tiktok 2 (Cận•chơi•đồ)",
-    Callback = function()
-        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
+for i, script_data in ipairs(ScriptList) do
+    if script_data.URL then
+        execute_loader(script_data.Name, script_data.URL)
+    elseif script_data.Action then
+        script_data.Action()
     end
-})
+end
 
---
--- Tab Script Blox Fruit (Script Blox Fruit)
---
-TabBloxFruit:CreateSection("Loaders")
-TabBloxFruit:CreateButton({
-    Text="W-Azure",
-    Callback=function()
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
-    end
-})
 
-TabBloxFruit:CreateButton({
-    Text="GreenZ Hub",
-    Callback=function()
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunDoughKing.lua"))()
-    end
-})
-
---
--- Tab Plants vs Brainrot (Plants vs Brainrot)
---
-TabPvB:CreateSection("Loaders")
-TabPvB:CreateButton({
-    Text = "Script Speedxhub (Cần Get Key)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
-    end
-})
-
---
--- Tab 99 nights in forest (99 nights in forest)
---
-Tab99Nights:CreateSection("Loaders 99NIF")
-Tab99Nights:CreateButton({
-    Text="Foxname",
-    Callback=function()       
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
-    end
-}) 
-
-Tab99Nights:CreateButton({
-    Text="Ringta",
-    Callback=function()    
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
-    end
-}) 
-
-Tab99Nights:CreateButton({
-    Text="VoidWare",
-    Callback=function()    
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
-    end
-})
-
---
--- Tab Steal a Brainrot (Steal a Brainrot)
---
-TabSteal:CreateSection("Cập nhật sắp tới")
-TabSteal:CreateButton({
-    Text="Steal Brainrot Script",
-    Callback=function()
-        setclipboard("Script Steal Brainrot sẽ được cập nhật sớm.")
-    end
-})
-
---
--- Tab Script troll (Script troll)
---
-TabTroll:CreateSection("Cập nhật sắp tới")
-TabTroll:CreateButton({
-    Text="Troll Script",
-    Callback=function()
-        setclipboard("Script troll sẽ được cập nhật sớm.")
-    end
-})
-
--- Lệnh Buộc hiển thị Hub
-Window:Show()
+-- 5. Xóa thông báo sau khi hoàn tất
+Label.Text = "Tất cả các script đã được thực thi!"
+wait(3)
+Label:Destroy()
+Notification:Destroy() 
