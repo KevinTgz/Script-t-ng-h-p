@@ -1,5 +1,7 @@
--- Khởi tạo V-GUI Library (Đơn giản và ổn định hơn Fluent UI)
-local vgui = loadstring(game:HttpGet("https://raw.githubusercontent.com/Green-02/V-GUI-Library/main/Source"))()
+-- Khai báo thư viện vgui (sẽ được định nghĩa ở Krnl)
+local vgui 
+
+-- Khởi tạo Window và các Tab (Sử dụng vgui đã được định nghĩa)
 local Window = vgui:Window("Cận đẹp zai - Tổng hợp", UDim2.fromOffset(400, 300))
 
 -- Tạo nút ẩn/hiện GUI (Icon Bánh răng ĐEN ổn định)
@@ -13,7 +15,7 @@ ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
 ImageButton.Image = "http://www.roblox.com/asset/?id=6207038140"
 
--- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
+-- Lệnh ẩn/hiện GUI chính
 local isHidden = false
 ImageButton.MouseButton1Down:Connect(function()
     isHidden = not isHidden
