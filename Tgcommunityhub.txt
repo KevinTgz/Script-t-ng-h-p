@@ -1,155 +1,88 @@
-local ScreenGui = Instance.new("ScreenGui")
+-- Khởi tạo V-GUI Library (Đơn giản và ổn định hơn Fluent UI)
+local vgui = loadstring(game:HttpGet("https://raw.githubusercontent.com/Green-02/V-GUI-Library/main/Source"))()
+local Window = vgui:Window("Cận đẹp zai - Tổng hợp", UDim2.fromOffset(400, 300))
+
+-- Tạo nút ẩn/hiện GUI (Icon Bánh răng ĐEN ổn định)
 local ImageButton = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
-
--- Thiết lập nút ẩn/hiện GUI
-ScreenGui.Parent = game.CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+ImageButton.Name = "ToggleImageButton"
+ImageButton.Parent = game.CoreGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
---  Đổi sang Icon Bánh răng MÀU ĐEN (Ổn định nhất)
-ImageButton.Image = "http://www.roblox.com/asset/?id=6207038140" 
-
-UICorner.CornerRadius = UDim.new(1, 10) 
-UICorner.Parent = ImageButton
+ImageButton.Image = "http://www.roblox.com/asset/?id=6207038140"
 
 -- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
+local isHidden = false
 ImageButton.MouseButton1Down:Connect(function()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
+    isHidden = not isHidden
+    Window:SetVisible(not isHidden)
 end)
 
--- Tải và khởi tạo thư viện Fluent UI
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-repeat wait() until game:IsLoaded()
-
-local Window = Fluent:CreateWindow({
-    Title = "Cận đẹp zai ",
-    SubTitle = "Tổng hợp",
-    TabWidth = 157,
-    Size = UDim2.fromOffset(450, 300),
-    Acrylic = true,
-    Theme = "Amethyst",
-    MinimizeKey = Enum.KeyCode.End
-})
-local Tabs = {
-        Main0=Window:AddTab({ Title="Thông Tin" }),
-        Main1=Window:AddTab({ Title="Script Blox Fruit" }),
-        Main2=Window:AddTab({ Title="Plants vs Brainrot" }),
-        Main3=Window:AddTab({ Title="99 nights in forest" }),
-        Main4=Window:AddTab({ Title="Steal a Brainrot" }),
-        Main5=Window:AddTab({ Title="Script troll" }),
-}
-    
 -- Tab Thông Tin (MAIN0)
-Tabs.Main0:AddButton({
-    Title = "Discord",
-    Description = "TG Community",
-    Callback = function()
-        setclipboard("https://discord.gg/MxSpY55t")
-    end
-})
-Tabs.Main0:AddButton({
-    Title = "Tiktok 1",
-    Description = "Cận•chơi•đồ",
-    Callback = function()
-        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
-    end
-})
-Tabs.Main0:AddButton({
-    Title = "Tiktok 2",
-    Description = "Cận•chơi•đồ",
-    Callback = function()
-        setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
-    end
-})
+local Main0 = Window:Tab("Thông Tin")
+Main0:Button("Discord", "TG Community", function()
+    setclipboard("https://discord.gg/MxSpY55t")
+end)
+Main0:Button("Tiktok 1", "Cận•chơi•đồ", function()
+    setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
+end)
+Main0:Button("Tiktok 2", "Cận•chơi•đồ", function()
+    setclipboard("https://www.tiktok.com/@dat100kfollowdoiten?_t=ZS-90IBxByWeiV&_r=1")
+end)
 
 -- Tab Script Blox Fruit (MAIN1)
-Tabs.Main1:AddButton({
-    Title="W-Azure",
-    Description="Script Blox Fruit",
-    Callback=function()
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
-    end
-})
--- THÊM SCRIPT HIRU HUB
-Tabs.Main1:AddButton({
-    Title="Hiru hub",
-    Description="Script Blox Fruit",
-    Callback=function()
-	  getgenv().Settings = {
-        JoinTeam = true,
-        Team = "Marines"
-      }
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/kiddohiru/Source/main/BloxFruits.lua"))()
-    end
-})
-Tabs.Main1:AddButton({
-    Title="Redz Hub Beta",
-    Description="Script Blox Fruit",
-    Callback=function()
-	  local Settings = {
+local Main1 = Window:Tab("Script Blox Fruit")
+Main1:Button("W-Azure", "Script Blox Fruit", function()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
+end)
+-- SCRIPT HIRU HUB
+Main1:Button("Hiru hub", "Script Blox Fruit", function()
+    getgenv().Settings = {
+        JoinTeam = true,
+        Team = "Marines"
+    }
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/kiddohiru/Source/main/BloxFruits.lua"))()
+end)
+Main1:Button("Redz Hub Beta", "Script Blox Fruit", function()
+    local Settings = {
         JoinTeam = "Pirates"; -- Pirates/Marines
         Translator = true; -- true/false
-      }
-      getgenv().BETA_VERSION = true
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
-    end
-})
+    }
+    getgenv().BETA_VERSION = true
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
+end)
 
 -- Tab Plants vs Brainrot (MAIN2)
-Tabs.Main2:AddButton({
-    Title = "Script Speedxhub",
-    Description = "Script này cần get key",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
-    end
-})
+local Main2 = Window:Tab("Plants vs Brainrot")
+Main2:Button("Script Speedxhub", "Script này cần get key", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
+end)
 
 -- Tab 99 nights in forest (MAIN3)
-Tabs.Main3:AddButton({
-    Title="Foxname ",
-    Description="Script 99 nights in forest",
-    Callback=function()       
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
-    end
-}) 
-Tabs.Main3:AddButton({
-    Title="Ringta ",
-    Description="Script 99 nights in forest",
-    Callback=function()    
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
-    end
-}) 
-Tabs.Main3:AddButton({
-    Title="VoidWare ",
-    Description="Script 99 nights in forest",
-    Callback=function()    
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
-    end
-})
+local Main3 = Window:Tab("99 nights in forest")
+Main3:Button("Foxname ", "Script 99 nights in forest", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+end)
+Main3:Button("Ringta ", "Script 99 nights in forest", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()
+end)
+Main3:Button("VoidWare ", "Script 99 nights in forest", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()
+end)
 
 -- Tab Steal a Brainrot (MAIN4)
-Tabs.Main4:AddButton({
-    Title="Steal Brainrot Script",
-    Description="Chức năng đang được cập nhật",
-    Callback=function()
-        setclipboard("Script Steal Brainrot sẽ được cập nhật sớm.")
-    end
-})
+local Main4 = Window:Tab("Steal a Brainrot")
+Main4:Button("Steal Brainrot Script", "Chức năng đang được cập nhật", function()
+    setclipboard("Script Steal Brainrot sẽ được cập nhật sớm.")
+end)
 
 -- Tab Script troll (MAIN5)
-Tabs.Main5:AddButton({
-    Title="Troll Script",
-    Description="Chức năng đang được cập nhật",
-    Callback=function()
-        setclipboard("Script troll sẽ được cập nhật sớm.")
-    end
-})
+local Main5 = Window:Tab("Script troll")
+Main5:Button("Troll Script", "Chức năng đang được cập nhật", function()
+    setclipboard("Script troll sẽ được cập nhật sớm.")
+end)
 
--- Lệnh quan trọng: BUỘC Hub hiển thị
-Window:Show()
+-- Hiển thị cửa sổ
+Window:SetVisible(true)
