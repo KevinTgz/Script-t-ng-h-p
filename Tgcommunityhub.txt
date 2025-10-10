@@ -7,13 +7,14 @@ ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ScreenGui
+-- ✅ Đảm bảo Nền TRẮNG
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
--- Icon Toggle/Switch đã được duyệt
-ImageButton.Image = "http://www.roblox.com/asset/?id=2745778216" 
+-- ✅ Icon List Menu ĐEN (ổn định nhất để khắc phục lỗi tải)
+ImageButton.Image = "http://www.roblox.com/asset/?id=7041793319" 
 
 UICorner.CornerRadius = UDim.new(1, 10) 
 UICorner.Parent = ImageButton
@@ -72,15 +73,27 @@ Tabs.Main0:AddButton({
 Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
-    Callback=function() loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
+    Callback=function()
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
+    end
+})
+-- ✅ THÊM SCRIPT HIRU HUB
+Tabs.Main1:AddButton({
+    Title="Hiru hub",
+    Description="Script Blox Fruit",
+    Callback=function()
+	  getgenv().Settings = {
+        JoinTeam = true,
+        Team = "Marines"
+      }
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/kiddohiru/Source/main/BloxFruits.lua"))()
     end
 })
 Tabs.Main1:AddButton({
     Title="Redz Hub Beta",
     Description="Script Blox Fruit",
     Callback=function()
-	  -- Định dạng lại script Redz Hub
-      local Settings = {
+	  local Settings = {
         JoinTeam = "Pirates"; -- Pirates/Marines
         Translator = true; -- true/false
       }
