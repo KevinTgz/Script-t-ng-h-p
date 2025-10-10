@@ -72,8 +72,7 @@ Tabs.Main0:AddButton({
 Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
-    Callback=function()
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
+    Callback=function() loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
     end
 })
 Tabs.Main1:AddButton({
