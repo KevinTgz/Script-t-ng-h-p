@@ -12,7 +12,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
--- ✅ Đổi sang Icon Bánh răng MÀU ĐEN (Ổn định nhất)
+--  Đổi sang Icon Bánh răng MÀU ĐEN (Ổn định nhất)
 ImageButton.Image = "http://www.roblox.com/asset/?id=6207038140" 
 
 UICorner.CornerRadius = UDim.new(1, 10) 
