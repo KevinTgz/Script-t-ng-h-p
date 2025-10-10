@@ -7,13 +7,12 @@ ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ScreenGui
--- Đảm bảo Nền TRẮNG
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
---  Icon List Menu ĐEN (ổn định nhất để khắc phục lỗi tải)
+-- Icon List Menu ĐEN
 ImageButton.Image = "http://www.roblox.com/asset/?id=7041793319" 
 
 UICorner.CornerRadius = UDim.new(1, 10) 
@@ -77,7 +76,7 @@ Tabs.Main1:AddButton({
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
     end
 })
---  THÊM SCRIPT HIRU HUB
+-- THÊM SCRIPT HIRU HUB
 Tabs.Main1:AddButton({
     Title="Hiru hub",
     Description="Script Blox Fruit",
