@@ -77,7 +77,7 @@ Tabs.Main1:AddButton({
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
     end
 })
--- ✅ THÊM SCRIPT HIRU HUB
+--  THÊM SCRIPT HIRU HUB
 Tabs.Main1:AddButton({
     Title="Hiru hub",
     Description="Script Blox Fruit",
