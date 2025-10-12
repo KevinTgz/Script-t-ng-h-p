@@ -1,26 +1,29 @@
 local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
+-- Dùng TextButton để đảm bảo hiển thị
+local TextButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 
 -- Thiết lập nút ẩn/hiện GUI
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-ImageButton.Parent = ScreenGui
---  Giữ Nền TRẮNG
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
-ImageButton.Size = UDim2.new(0, 40, 0, 40)
-ImageButton.Draggable = true
---  THAY ICON MỚI: Mũi tên Đen (Asset cơ bản nhất, khả năng hiển thị cao)
-ImageButton.Image = "http://www.roblox.com/asset/?id=7451945741" 
+TextButton.Parent = ScreenGui
+-- ĐÃ SỬA: Dùng nền màu đen để nổi bật
+TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50) 
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
+TextButton.Size = UDim2.new(0, 50, 0, 40) -- Kích thước lớn hơn một chút
+TextButton.Draggable = true
+TextButton.Text = "TG" -- ĐÃ SỬA: CHỮ HIỂN THỊ LÀ "TG"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.TextSize = 16
 
 UICorner.CornerRadius = UDim.new(1, 10) 
-UICorner.Parent = ImageButton
+UICorner.Parent = TextButton
 
 -- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
-ImageButton.MouseButton1Down:Connect(function()
+TextButton.MouseButton1Down:Connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
 end)
 
@@ -82,12 +85,13 @@ Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
+	  -- ĐÃ CẬP NHẬT SCRIPT CHÍNH XÁC CỦA W-AZURE
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
     end
 })
 Tabs.Main1:AddButton({
     Title="Redz Hub Beta",
-    Description="Script Blox Fruit chỉ sử dụng bên Delta X ",
+    Description="Script Blox Fruit",
     Callback=function()
 	  local Settings = {
         JoinTeam = "Pirates"; -- Pirates/Marines
