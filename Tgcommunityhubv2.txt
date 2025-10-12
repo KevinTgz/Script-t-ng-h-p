@@ -30,7 +30,7 @@ repeat wait() until game:IsLoaded()
 
 local Window = Fluent:CreateWindow({
     Title = "Cận đẹp zai ",
-    SubTitle = "Vương béo gay",
+    SubTitle = "Tổng hợp",
     TabWidth = 157,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true,
@@ -87,7 +87,7 @@ Tabs.Main1:AddButton({
 })
 Tabs.Main1:AddButton({
     Title="Redz Hub Beta",
-    Description="Script Blox Fruit",
+    Description="Script Blox Fruit chỉ sử dụng bên Delta X ",
     Callback=function()
 	  local Settings = {
         JoinTeam = "Pirates"; -- Pirates/Marines
