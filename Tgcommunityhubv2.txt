@@ -71,6 +71,14 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 Tabs.Main1:AddButton({
+    Title="Hiru Hub",
+    Description="Script Blox Fruit",
+    Callback=function()
+        getgenv().Settings = { JoinTeam = true, Team = "Marines" }
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/kiddohiru/Source/main/BloxFruits.lua"))()
+    end
+})
+Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
