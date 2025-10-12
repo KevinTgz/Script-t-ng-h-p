@@ -73,6 +73,17 @@ Tabs.Main0:AddButton({
 })
 
 -- Tab Script Blox Fruit (MAIN1)
+
+-- NÚT ĐÃ THÊM: Đạt Thg
+Tabs.Main1:AddButton({
+    Title="Đạt Thg",
+    Description="Script Blox Fruit",
+    Callback=function()
+        getgenv().Team = "Marines"
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/DatThg/refs/heads/main/DatThgV2"))()
+    end
+})
+
 Tabs.Main1:AddButton({
     Title="Hiru Hub",
     Description="Script Blox Fruit",
@@ -85,7 +96,7 @@ Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
-	  -- ĐÃ CẬP NHẬT SCRIPT CHÍNH XÁC CỦA W-AZURE
+	  -- SCRIPT W-AZURE ĐÃ ĐƯỢC CẬP NHẬT
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
     end
 })
