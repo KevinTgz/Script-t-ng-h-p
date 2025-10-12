@@ -155,6 +155,16 @@ Tabs.Main4:AddButton({
 })
 
 -- Tab Script troll (MAIN5)
+
+-- NÚT ĐÃ THÊM: Spider Script
+Tabs.Main5:AddButton({
+    Title="Script Lọ Vương", 
+    Description="script giúp bạn thành Lọ Vương",
+    Callback=function()
+        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
+    end
+})
+
 Tabs.Main5:AddButton({
     Title="Troll Script",
     Description="Chức năng đang được cập nhật",
