@@ -14,7 +14,7 @@ ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
 --  THAY ICON MỚI: Mũi tên Đen (Asset cơ bản nhất, khả năng hiển thị cao)
-ImageButton.Image = "http://www.roblox.com/asset/?id=2745778216" 
+ImageButton.Image = "http://www.roblox.com/asset/?id=7451945741" 
 
 UICorner.CornerRadius = UDim.new(1, 10) 
 UICorner.Parent = ImageButton
