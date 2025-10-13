@@ -86,7 +86,7 @@ Tabs.Main1:AddButton({
 
 -- NÚT: Đạt Thg
 Tabs.Main1:AddButton({
-    Title="Đạt Thg",
+    Title="Đạt Thg V2",
     Description="Script Blox Fruit",
     Callback=function()
         getgenv().Team = "Marines"
@@ -112,7 +112,7 @@ Tabs.Main1:AddButton({
 })
 Tabs.Main1:AddButton({
     Title="Redz Hub Beta",
-    Description="Script Blox Fruit",
+    Description="Script Blox Fruit này không còn hoạt động",
     Callback=function()
 	  local Settings = {
         JoinTeam = "Pirates"; -- Pirates/Marines
@@ -184,8 +184,8 @@ Tabs.Main5:AddButton({
 })
 
 Tabs.Main5:AddButton({
-    Title="Troll Script",
-    Description="Chức năng đang được cập nhật",
+    Title="Coming Soon",
+    Description="Coming Soon",
     Callback=function()
         setclipboard("Script troll sẽ được cập nhật sớm.")
     end
