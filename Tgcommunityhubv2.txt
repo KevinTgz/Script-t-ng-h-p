@@ -177,7 +177,7 @@ Tabs.Main4:AddButton({
 -- Tab Script troll (MAIN5)
 Tabs.Main5:AddButton({
     Title="Spider Script", 
-    Description="script",
+    Description="script giúp bạn thành lọ vương",
     Callback=function()
         loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
     end
