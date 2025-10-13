@@ -123,6 +123,16 @@ Tabs.Main2:AddButton({
 })
 
 -- Tab 99 nights in forest (MAIN3)
+
+-- NÚT ĐÃ THÊM: Thunder Hub
+Tabs.Main3:AddButton({
+    Title="Thunder Hub",
+    Description="Script 99 nights in forest",
+    Callback=function()       
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
+    end
+}) 
+
 Tabs.Main3:AddButton({
     Title="Foxname ",
     Description="Script 99 nights in forest",
@@ -155,11 +165,9 @@ Tabs.Main4:AddButton({
 })
 
 -- Tab Script troll (MAIN5)
-
--- NÚT ĐÃ THÊM: Spider Script
 Tabs.Main5:AddButton({
-    Title="Script Lọ Vương", 
-    Description="script giúp bạn thành Lọ Vương",
+    Title="Spider Script", 
+    Description="script",
     Callback=function()
         loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
     end
