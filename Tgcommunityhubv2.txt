@@ -8,13 +8,13 @@ ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = ScreenGui
--- ĐÃ SỬA: Dùng nền màu đen để nổi bật
+-- Dùng nền màu đen để nổi bật
 TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50) 
 TextButton.BorderSizePixel = 0
 TextButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 TextButton.Size = UDim2.new(0, 50, 0, 40) -- Kích thước lớn hơn một chút
 TextButton.Draggable = true
-TextButton.Text = "TG" -- ĐÃ SỬA: CHỮ HIỂN THỊ LÀ "TG"
+TextButton.Text = "TG" -- CHỮ HIỂN THỊ LÀ "TG"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.Font = Enum.Font.SourceSansBold
 TextButton.TextSize = 16
@@ -22,8 +22,9 @@ TextButton.TextSize = 16
 UICorner.CornerRadius = UDim.new(1, 10) 
 UICorner.Parent = TextButton
 
+-- SỬA LỖI: Chuyển sang MouseButton1Click để ổn định hơn
 -- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
-TextButton.MouseButton1Down:Connect(function()
+TextButton.MouseButton1Click:Connect(function() 
     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
 end)
 
@@ -74,7 +75,16 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
--- NÚT ĐÃ THÊM: Đạt Thg
+-- NÚT ĐÃ THÊM: BlueX-Hub
+Tabs.Main1:AddButton({
+    Title="BlueX-Hub",
+    Description="Script Blox Fruit",
+    Callback=function()
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+    end
+})
+
+-- NÚT: Đạt Thg
 Tabs.Main1:AddButton({
     Title="Đạt Thg",
     Description="Script Blox Fruit",
@@ -96,7 +106,7 @@ Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
-	  -- SCRIPT W-AZURE ĐÃ ĐƯỢC CẬP NHẬT
+	  -- SCRIPT W-AZURE
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
     end
 })
@@ -124,7 +134,7 @@ Tabs.Main2:AddButton({
 
 -- Tab 99 nights in forest (MAIN3)
 
--- NÚT ĐÃ THÊM: Thunder Hub
+-- NÚT: Thunder Hub
 Tabs.Main3:AddButton({
     Title="Thunder Hub",
     Description="Script 99 nights in forest",
@@ -159,7 +169,7 @@ Tabs.Main3:AddButton({
 Tabs.Main4:AddButton({
     Title="Steal Brainrot Script",
     Description="Chức năng đang được cập nhật",
-    Callback=function()
+    Callback = function()
         setclipboard("Script Steal Brainrot sẽ được cập nhật sớm.")
     end
 })
