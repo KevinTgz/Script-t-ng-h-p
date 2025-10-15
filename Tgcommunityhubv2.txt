@@ -75,7 +75,26 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
--- NÚT MỚI THÊM: Doraemon Hub V2 (của Dev-GravityHub)
+-- NÚT MỚI THÊM: Hiru Hub = RedZ (Script mới)
+Tabs.Main1:AddButton({
+    Title="Hiru Hub = RedZ",
+    Description="Script Blox Fruit",
+    Callback=function()
+	    loadstring(game:HttpGet("https://pastefy.app/cbtro9Hc/raw"))()
+    end
+})
+
+-- NÚT: HNC Hub
+Tabs.Main1:AddButton({
+    Title="HNC Hub",
+    Description="Script Blox Fruit",
+    Callback=function()
+	    getgenv().team = "Pirates" -- Luôn chọn Hải Tặc
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hnc-roblox/HNCHubOnTop/refs/heads/main/HNC_Roblox.lua"))()
+    end
+})
+
+-- NÚT: Doraemon Hub V2
 Tabs.Main1:AddButton({
     Title="Doraemon Hub V2",
     Description="Script Blox Fruit",
@@ -84,7 +103,7 @@ Tabs.Main1:AddButton({
     end
 })
 
--- NÚT CŨ: Doraemon (Masterhub)
+-- NÚT: Doraemon (Masterhub)
 Tabs.Main1:AddButton({
     Title="Doraemon Script",
     Description="Script Blox Fruit",
@@ -114,14 +133,6 @@ Tabs.Main1:AddButton({
 })
 
 Tabs.Main1:AddButton({
-    Title="Hiru Hub",
-    Description="Script Blox Fruit",
-    Callback=function()
-        getgenv().Settings = { JoinTeam = true, Team = "Marines" }
-	    loadstring(game:HttpGet("https://raw.githubusercontent.com/kiddohiru/Source/main/BloxFruits.lua"))()
-    end
-})
-Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
@@ -129,18 +140,8 @@ Tabs.Main1:AddButton({
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
     end
 })
-Tabs.Main1:AddButton({
-    Title="Redz Hub Beta",
-    Description="Script Blox Fruit",
-    Callback=function()
-	  local Settings = {
-        JoinTeam = "Pirates"; -- Pirates/Marines
-        Translator = true; -- true/false
-      }
-      getgenv().BETA_VERSION = true
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))(Settings)
-    end
-})
+
+-- Các nút Hiru Hub và Redz Hub Beta cũ đã được loại bỏ
 
 -- Tab Plants vs Brainrot (MAIN2)
 Tabs.Main2:AddButton({
@@ -195,8 +196,8 @@ Tabs.Main4:AddButton({
 
 -- Tab Script troll (MAIN5)
 Tabs.Main5:AddButton({
-    Title="Script Lọ Vương", 
-    Description="script giúp bạn thành lọ vương",
+    Title="Spider Script", 
+    Description="script",
     Callback=function()
         loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
     end
