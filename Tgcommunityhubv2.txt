@@ -75,7 +75,16 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
--- NÚT ĐÃ THÊM: BlueX-Hub
+-- NÚT MỚI THÊM: Doraemon (Masterhub)
+Tabs.Main1:AddButton({
+    Title="Doraemon Script Masterhub",
+    Description="Script Blox Fruit",
+    Callback=function()
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/obfmoonsec/Masterhub/refs/heads/main/obf"))()
+    end
+})
+
+-- NÚT: BlueX-Hub
 Tabs.Main1:AddButton({
     Title="BlueX-Hub",
     Description="Script Blox Fruit",
@@ -84,9 +93,10 @@ Tabs.Main1:AddButton({
     end
 })
 
+
 -- NÚT: Đạt Thg
 Tabs.Main1:AddButton({
-    Title="Đạt Thg V2",
+    Title="Đạt Thg",
     Description="Script Blox Fruit",
     Callback=function()
         getgenv().Team = "Marines"
@@ -112,7 +122,7 @@ Tabs.Main1:AddButton({
 })
 Tabs.Main1:AddButton({
     Title="Redz Hub Beta",
-    Description="Script Blox Fruit này không còn hoạt động",
+    Description="Script Blox Fruit",
     Callback=function()
 	  local Settings = {
         JoinTeam = "Pirates"; -- Pirates/Marines
@@ -177,15 +187,15 @@ Tabs.Main4:AddButton({
 -- Tab Script troll (MAIN5)
 Tabs.Main5:AddButton({
     Title="Spider Script", 
-    Description="script giúp bạn thành lọ vương",
+    Description="script",
     Callback=function()
         loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
     end
 })
 
 Tabs.Main5:AddButton({
-    Title="Coming Soon",
-    Description="Coming Soon",
+    Title="Troll Script",
+    Description="Chức năng đang được cập nhật",
     Callback=function()
         setclipboard("Script troll sẽ được cập nhật sớm.")
     end
