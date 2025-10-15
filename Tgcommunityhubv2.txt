@@ -75,9 +75,18 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
--- NÚT MỚI THÊM: Doraemon (Masterhub)
+-- NÚT MỚI THÊM: Doraemon Hub V2 (của Dev-GravityHub)
 Tabs.Main1:AddButton({
-    Title="Doraemon Script Masterhub",
+    Title="Doraemon Hub V2",
+    Description="Script Blox Fruit",
+    Callback=function()
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()
+    end
+})
+
+-- NÚT CŨ: Doraemon (Masterhub)
+Tabs.Main1:AddButton({
+    Title="Doraemon Script",
     Description="Script Blox Fruit",
     Callback=function()
 	    loadstring(game:HttpGet("https://raw.githubusercontent.com/obfmoonsec/Masterhub/refs/heads/main/obf"))()
@@ -186,8 +195,8 @@ Tabs.Main4:AddButton({
 
 -- Tab Script troll (MAIN5)
 Tabs.Main5:AddButton({
-    Title="Spider Script", 
-    Description="script",
+    Title="Script Lọ Vương", 
+    Description="script giúp bạn thành lọ vương",
     Callback=function()
         loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
     end
