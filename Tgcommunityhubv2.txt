@@ -75,22 +75,44 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
--- NÚT MỚI THÊM: Hiru Hub = RedZ (Script mới)
+-- NÚT: HNC Hub (ĐÃ THÊM BỘ KIỂM TRA LỖI VÀ THÔNG BÁO)
+Tabs.Main1:AddButton({
+    Title="HNC Hub",
+    Description="Script Blox Fruit",
+    Callback=function()
+        -- Báo hiệu đang tải ngay lập tức
+        Fluent:Notify({Title="HNC Hub", Content="Đang tải script HNC. Vui lòng chờ...", Duration=5})
+        
+        spawn(function()
+            getgenv().team = "Pirates" -- Cài đặt Hải Tặc
+            
+            -- Sử dụng pcall để thực thi an toàn và bắt lỗi
+            local success, err = pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/hnc-roblox/HNCHubOnTop/refs/heads/main/HNC_Roblox.lua"))()
+            end)
+
+            if not success then
+                -- Báo lỗi rõ ràng bằng cửa sổ thông báo
+                Fluent:Notify({
+                    Title="LỖI TẢI SCRIPT", 
+                    Content="Script HNC bị lỗi hoặc đã cũ/hỏng. Vui lòng tìm link mới. (Chi tiết: " .. tostring(err) .. ")", 
+                    Duration=10,
+                    Theme = "Red" -- Dùng màu đỏ cho lỗi
+                })
+            else
+                -- Báo hiệu tải thành công
+                Fluent:Notify({Title="HNC Hub", Content="Script HNC đã được tải thành công!", Duration=3})
+            end
+        end)
+    end
+})
+
+-- NÚT: Hiru Hub = RedZ
 Tabs.Main1:AddButton({
     Title="Hiru Hub = RedZ",
     Description="Script Blox Fruit",
     Callback=function()
 	    loadstring(game:HttpGet("https://pastefy.app/cbtro9Hc/raw"))()
-    end
-})
-
--- NÚT: HNC Hub
-Tabs.Main1:AddButton({
-    Title="HNC Hub",
-    Description="Script Blox Fruit",
-    Callback=function()
-	    getgenv().team = "Pirates" -- Luôn chọn Hải Tặc
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/hnc-roblox/HNCHubOnTop/refs/heads/main/HNC_Roblox.lua"))()
     end
 })
 
@@ -140,8 +162,6 @@ Tabs.Main1:AddButton({
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
     end
 })
-
--- Các nút Hiru Hub và Redz Hub Beta cũ đã được loại bỏ
 
 -- Tab Plants vs Brainrot (MAIN2)
 Tabs.Main2:AddButton({
