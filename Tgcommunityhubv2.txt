@@ -75,38 +75,6 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
--- NÚT: HNC Hub (ĐÃ THÊM BỘ KIỂM TRA LỖI VÀ THÔNG BÁO)
-Tabs.Main1:AddButton({
-    Title="HNC Hub",
-    Description="Script Blox Fruit",
-    Callback=function()
-        -- Báo hiệu đang tải ngay lập tức
-        Fluent:Notify({Title="HNC Hub", Content="Đang tải script HNC. Vui lòng chờ...", Duration=5})
-        
-        spawn(function()
-            getgenv().team = "Pirates" -- Cài đặt Hải Tặc
-            
-            -- Sử dụng pcall để thực thi an toàn và bắt lỗi
-            local success, err = pcall(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/hnc-roblox/HNCHubOnTop/refs/heads/main/HNC_Roblox.lua"))()
-            end)
-
-            if not success then
-                -- Báo lỗi rõ ràng bằng cửa sổ thông báo
-                Fluent:Notify({
-                    Title="LỖI TẢI SCRIPT", 
-                    Content="Script HNC bị lỗi hoặc đã cũ/hỏng. Vui lòng tìm link mới. (Chi tiết: " .. tostring(err) .. ")", 
-                    Duration=10,
-                    Theme = "Red" -- Dùng màu đỏ cho lỗi
-                })
-            else
-                -- Báo hiệu tải thành công
-                Fluent:Notify({Title="HNC Hub", Content="Script HNC đã được tải thành công!", Duration=3})
-            end
-        end)
-    end
-})
-
 -- NÚT: Hiru Hub = RedZ
 Tabs.Main1:AddButton({
     Title="Hiru Hub = RedZ",
