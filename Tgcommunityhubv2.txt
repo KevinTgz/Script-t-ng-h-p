@@ -75,6 +75,28 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
+-- NÚT MỚI: Xeter Hub V2
+Tabs.Main1:AddButton({
+    Title="Xeter Hub V2",
+    Description="Script Blox Fruit",
+    Callback=function()
+        getgenv().Version = "V2"
+        getgenv().Team = "Marines"
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+    end
+})
+
+-- NÚT MỚI: Xeter Hub V3
+Tabs.Main1:AddButton({
+    Title="Xeter Hub V3",
+    Description="Script Blox Fruit",
+    Callback=function()
+        getgenv().Version = "V3"
+        getgenv().Team = "Marines"
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+    end
+})
+
 -- NÚT: Hiru Hub = RedZ
 Tabs.Main1:AddButton({
     Title="Hiru Hub = RedZ",
