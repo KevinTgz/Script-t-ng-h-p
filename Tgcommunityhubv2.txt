@@ -1,7 +1,7 @@
 local ScreenGui = Instance.new("ScreenGui")
 -- Dùng TextButton để đảm bảo hiển thị
 local TextButton = Instance.new("TextButton")
-local UICorner = Instance.new("UICorner")
+-- local UICorner = Instance.new("UICorner") -- ĐÃ BỎ ĐỂ TẠO HÌNH VUÔNG
 
 -- Thiết lập nút ẩn/hiện GUI
 ScreenGui.Parent = game.CoreGui
@@ -19,8 +19,9 @@ TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.Font = Enum.Font.SourceSansBold
 TextButton.TextSize = 16
 
-UICorner.CornerRadius = UDim.new(1, 10) 
-UICorner.Parent = TextButton
+-- Đã xóa UICorner để tạo nút hình vuông
+-- UICorner.CornerRadius = UDim.new(1, 10) 
+-- UICorner.Parent = TextButton
 
 -- SỬA LỖI: Chuyển sang MouseButton1Click để ổn định hơn
 -- Lệnh mô phỏng nhấn phím "End" để ẩn/hiện GUI chính
@@ -53,7 +54,7 @@ local function SafeExecute(scriptTitle, loadstringCommand)
         })
     else
         Fluent:Notify({
-            Title = "LỖI TẢI SCRIPT",
+            Title = "❌ LỖI TẢI SCRIPT",
             Content = string.format("Không thể chạy %s. Lỗi: %s", scriptTitle, tostring(err)),
             Duration = 10
         })
@@ -218,7 +219,7 @@ Tabs.Main1:AddButton({
 -- NÚT MỚI: SpaceHub
 Tabs.Main2:AddButton({
     Title = "SpaceHub",
-    Description = "Script Plants vs Brainrot có key",
+    Description = "Script Plants vs Brainrot",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/ago106/SpaceHub/refs/heads/main/loader.lua'))()    
     end
@@ -237,7 +238,7 @@ Tabs.Main2:AddButton({
 -- NÚT: Thunder Hub
 Tabs.Main3:AddButton({
     Title="Thunder Hub",
-    Description="Script 99 nights in forest có key",
+    Description="Script 99 nights in forest",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
     end
