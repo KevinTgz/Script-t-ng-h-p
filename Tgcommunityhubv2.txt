@@ -32,6 +32,34 @@ end)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 repeat wait() until game:IsLoaded()
 
+-- HÀM THỰC THI SCRIPT AN TOÀN VÀ CÓ THÔNG BÁO
+local function SafeExecute(scriptTitle, loadstringCommand)
+    Fluent:Notify({
+        Title = "TẢI SCRIPT",
+        Content = string.format("Đang tải %s. Vui lòng chờ vài phút...", scriptTitle),
+        Duration = 10 -- Hiển thị 10 giây ban đầu, sau đó cập nhật
+    })
+    
+    local success, err = pcall(function()
+        -- Thực thi script bên ngoài
+        loadstringCommand()
+    end)
+    
+    if success then
+        Fluent:Notify({
+            Title = "THÀNH CÔNG",
+            Content = string.format("%s đã tải xong và đang chạy.", scriptTitle),
+            Duration = 5
+        })
+    else
+        Fluent:Notify({
+            Title = "LỖI TẢI SCRIPT",
+            Content = string.format("Không thể chạy %s. Lỗi: %s", scriptTitle, tostring(err)),
+            Duration = 10
+        })
+    end
+end
+
 local Window = Fluent:CreateWindow({
     Title = "Cận đẹp zai ",
     SubTitle = "Tổng hợp",
@@ -80,9 +108,13 @@ Tabs.Main1:AddButton({
     Title="Xeter Hub V2",
     Description="Script Blox Fruit",
     Callback=function()
-        getgenv().Version = "V2"
-        getgenv().Team = "Marines"
-	    loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+        spawn(function()
+            SafeExecute("Xeter Hub V2", function()
+                getgenv().Version = "V2"
+                getgenv().Team = "Marines"
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+            end)
+        end)
     end
 })
 
@@ -91,9 +123,13 @@ Tabs.Main1:AddButton({
     Title="Xeter Hub V3",
     Description="Script Blox Fruit",
     Callback=function()
-        getgenv().Version = "V3"
-        getgenv().Team = "Marines"
-	    loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+        spawn(function()
+            SafeExecute("Xeter Hub V3", function()
+                getgenv().Version = "V3"
+                getgenv().Team = "Marines"
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()
+            end)
+        end)
     end
 })
 
@@ -102,7 +138,11 @@ Tabs.Main1:AddButton({
     Title="Hiru Hub = RedZ",
     Description="Script Blox Fruit",
     Callback=function()
-	    loadstring(game:HttpGet("https://pastefy.app/cbtro9Hc/raw"))()
+        spawn(function()
+            SafeExecute("Hiru Hub = RedZ", function()
+                loadstring(game:HttpGet("https://pastefy.app/cbtro9Hc/raw"))()
+            end)
+        end)
     end
 })
 
@@ -111,7 +151,11 @@ Tabs.Main1:AddButton({
     Title="Doraemon Hub V2",
     Description="Script Blox Fruit",
     Callback=function()
-	    loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()
+        spawn(function()
+            SafeExecute("Doraemon Hub V2", function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()
+            end)
+        end)
     end
 })
 
@@ -120,7 +164,11 @@ Tabs.Main1:AddButton({
     Title="Doraemon Script",
     Description="Script Blox Fruit",
     Callback=function()
-	    loadstring(game:HttpGet("https://raw.githubusercontent.com/obfmoonsec/Masterhub/refs/heads/main/obf"))()
+        spawn(function()
+            SafeExecute("Doraemon Script", function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/obfmoonsec/Masterhub/refs/heads/main/obf"))()
+            end)
+        end)
     end
 })
 
@@ -129,7 +177,11 @@ Tabs.Main1:AddButton({
     Title="BlueX-Hub",
     Description="Script Blox Fruit",
     Callback=function()
-	    loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+        spawn(function()
+            SafeExecute("BlueX-Hub", function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()
+            end)
+        end)
     end
 })
 
@@ -139,8 +191,12 @@ Tabs.Main1:AddButton({
     Title="Đạt Thg",
     Description="Script Blox Fruit",
     Callback=function()
-        getgenv().Team = "Marines"
-	    loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/DatThg/refs/heads/main/DatThgV2"))()
+        spawn(function()
+            SafeExecute("Đạt Thg", function()
+                getgenv().Team = "Marines"
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/DatThg/refs/heads/main/DatThgV2"))()
+            end)
+        end)
     end
 })
 
@@ -148,8 +204,12 @@ Tabs.Main1:AddButton({
     Title="W-Azure",
     Description="Script Blox Fruit",
     Callback=function()
-	  -- SCRIPT W-AZURE
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
+        spawn(function()
+            SafeExecute("W-Azure", function()
+                -- SCRIPT W-AZURE
+                loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
+            end)
+        end)
     end
 })
 
@@ -158,7 +218,7 @@ Tabs.Main1:AddButton({
 -- NÚT MỚI: SpaceHub
 Tabs.Main2:AddButton({
     Title = "SpaceHub",
-    Description = "Script Plants vs Brainrot",
+    Description = "Script Plants vs Brainrot có key",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/ago106/SpaceHub/refs/heads/main/loader.lua'))()    
     end
@@ -177,7 +237,7 @@ Tabs.Main2:AddButton({
 -- NÚT: Thunder Hub
 Tabs.Main3:AddButton({
     Title="Thunder Hub",
-    Description="Script 99 nights in forest",
+    Description="Script 99 nights in forest có key",
     Callback=function()       
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
     end
