@@ -219,7 +219,7 @@ Tabs.Main1:AddButton({
 -- NÚT MỚI: SpaceHub
 Tabs.Main2:AddButton({
     Title = "SpaceHub",
-    Description = "Script Plants vs Brainrot",
+    Description = "Script Plants vs Brainrot cần get key",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/ago106/SpaceHub/refs/heads/main/loader.lua'))()    
     end
