@@ -28,18 +28,21 @@ local function SafeExecute(scriptTitle, loadstringCommand)
             Content = string.format("Không thể chạy %s. Lỗi: %s", scriptTitle, tostring(err)),
             Duration = 10
         })
+        -- Ghi lỗi ra Console để debug
+        warn("LỖI THỰC THI SCRIPT:", scriptTitle, err)
     end
 end
 
 -- ==========================================================================================
 -- 1. THIẾT LẬP CỬA SỔ
+-- KÍCH THƯỚC HIỆN TẠI: Width=320, Height=450, TabWidth=110
 -- ==========================================================================================
 
 local Window = Fluent:CreateWindow({
     Title = "Cận đẹp zai",
     SubTitle = "Tổng hợp",
-    TabWidth = 157,
-    Size = UDim2.fromOffset(450, 420),
+    TabWidth = 110, -- Giữ độ rộng Tab
+    Size = UDim2.fromOffset(320, 450), -- KÍCH THƯỚC HIỆN TẠI: Rộng 320, Cao 450
     Acrylic = true,
     Theme = "Amethyst",
     MinimizeKey = Enum.KeyCode.End -- Vẫn giữ phím End làm fallback ổn định
@@ -74,7 +77,6 @@ TextButton.TextSize = 16
 TextButton.MouseButton1Click:Connect(function() 
     task.spawn(function()
         -- Hàm Minimize() hoạt động đáng tin cậy hơn Toggle() trong nhiều Exploit.
-        -- Nó có thể hoạt động được ngay cả sau khi đã Minimize bằng nút "-".
         Window:Minimize()
         
         -- Thông báo nhắc nhở về phím END cho người dùng PC
