@@ -1,6 +1,14 @@
+-- ==========================================================================================
+-- CẬN ĐẸP ZAI HUB - V34 (SỬ DỤNG FLUENT UI)
+-- Đã loại bỏ script Min Gaming Hub khỏi Tab "Script troll" theo yêu cầu.
+-- ==========================================================================================
+
 -- Tải thư viện Fluent UI (Đảm bảo chỉ có 1 lần tải ở đầu)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 repeat task.wait() until game:IsLoaded()
+
+-- Gán Fluent instance vào global environment
+getgenv().Fluent = Fluent
 
 -- HÀM THỰC THI SCRIPT AN TOÀN VÀ CÓ THÔNG BÁO
 local function SafeExecute(scriptTitle, loadstringCommand)
@@ -35,27 +43,22 @@ end
 
 -- ==========================================================================================
 -- 1. THIẾT LẬP CỬA SỔ
--- KÍCH THƯỚC HIỆN TẠI: Width=320, Height=450, TabWidth=110
 -- ==========================================================================================
 
 local Window = Fluent:CreateWindow({
     Title = "Cận đẹp zai",
     SubTitle = "Tổng hợp",
-    TabWidth = 110, -- Giữ độ rộng Tab
-    Size = UDim2.fromOffset(450, 320), -- KÍCH THƯỚC HIỆN TẠI: Rộng 320, Cao 450
+    TabWidth = 110, 
+    Size = UDim2.fromOffset(450, 320), 
     Acrylic = true,
     Theme = "Amethyst",
-    MinimizeKey = Enum.KeyCode.End -- Vẫn giữ phím End làm fallback ổn định
+    MinimizeKey = Enum.KeyCode.End -- Phím End (PC)
 })
-
--- Gán Fluent instance vào global environment
-getgenv().Fluent = Fluent
 
 -- ==========================================================================================
 -- 2. TẠO NÚT TG NỔI (SỬ DỤNG MINIMIZE() ĐỂ KHẮC PHỤC LỖI)
 -- ==========================================================================================
 
--- Tạo nút bấm TG
 local ScreenGui = Instance.new("ScreenGui")
 local TextButton = Instance.new("TextButton")
 
@@ -73,13 +76,11 @@ TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.Font = Enum.Font.SourceSansBold
 TextButton.TextSize = 16
 
--- GIẢI PHÁP ỔN ĐỊNH CHO MỌI NGƯỜI DÙNG: DÙNG WINDOW:MINIMIZE()
+-- DÙNG WINDOW:MINIMIZE()
 TextButton.MouseButton1Click:Connect(function() 
     task.spawn(function()
-        -- Hàm Minimize() hoạt động đáng tin cậy hơn Toggle() trong nhiều Exploit.
         Window:Minimize()
         
-        -- Thông báo nhắc nhở về phím END cho người dùng PC
         Fluent:Notify({
             Title = "Ẩn/Hiện",
             Content = "Đã ẩn/hiện Hub. Nếu gặp lỗi, hãy dùng phím END (End Key).",
@@ -157,10 +158,10 @@ Tabs.Main1:AddButton({
     Callback=function()
         SafeExecute("Hiru Hub = RedZ", function()
            getgenv().Settings = {
-    JoinTeam = true,
-    Team = "Marines"-- Pirates or Marines
-}
-loadstring(game:HttpGet("https://raw.githubusercontent.com/KiddoHiru/BloxFruits/main/Source.lua"))()
+                JoinTeam = true,
+                Team = "Marines"-- Pirates or Marines
+            }
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/KiddoHiru/BloxFruits/main/Source.lua"))()
         end)
     end
 })
@@ -216,14 +217,18 @@ Tabs.Main2:AddButton({
     Title = "SpaceHub",
     Description = "Script Plants vs Brainrot cần get key",
     Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/ago106/SpaceHub/refs/heads/main/loader.lua'))()    
+        SafeExecute("SpaceHub", function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/ago106/SpaceHub/refs/heads/main/loader.lua'))()    
+        end)
     end
 })
 Tabs.Main2:AddButton({
     Title = "Script Speedxhub",
     Description = "Script này cần get key",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
+        SafeExecute("Script Speedxhub", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()    
+        end)
     end
 })
 
@@ -232,28 +237,36 @@ Tabs.Main3:AddButton({
     Title="Thunder Hub",
     Description="Script 99 nights in forest",
     Callback=function()       
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
+        SafeExecute("Thunder Hub", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
+        end)
     end
 }) 
 Tabs.Main3:AddButton({
     Title="Foxname ",
     Description="Script 99 nights in forest",
     Callback=function()       
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+        SafeExecute("Foxname", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+        end)
     end
 }) 
 Tabs.Main3:AddButton({
     Title="Ringta ",
     Description="Script 99 nights in forest",
     Callback=function()    
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
+        SafeExecute("Ringta", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/99daysloader.github.io/refs/heads/main/ringta.lua"))()    
+        end)
     end
 }) 
 Tabs.Main3:AddButton({
     Title="VoidWare ",
     Description="Script 99 nights in forest",
     Callback=function()    
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
+        SafeExecute("VoidWare", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()    
+        end)
     end
 })
 
@@ -267,11 +280,23 @@ Tabs.Main4:AddButton({
 })
 
 -- Tab Script troll (MAIN5)
+-- Đã xóa Min Gaming Hub khỏi đây
+Tabs.Main5:AddButton({
+    Title="Gojo Script (Troll)",
+    Description="Script Gojo, dùng để troll hoặc trải nghiệm",
+    Callback=function()
+        SafeExecute("Gojo Script (Troll)", function()
+            loadstring(game:HttpGet("https://pastefy.app/OS8Atp5c/raw"))()
+        end)
+    end
+})
 Tabs.Main5:AddButton({
     Title="Spider Script", 
     Description="script",
     Callback=function()
-        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
+        SafeExecute("Spider Script", function()
+            loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
+        end)
     end
 })
 
@@ -285,3 +310,10 @@ Tabs.Main5:AddButton({
 
 -- Lệnh quan trọng: BUỘC Hub hiển thị ban đầu
 Window:Show()
+
+-- Thông báo khởi tạo thành công
+Fluent:Notify({
+    Title = "Cận đẹp zai Hub",
+    Content = "Hub đã được khởi tạo thành công với Fluent UI (Ver34).",
+    Duration = 5
+})
