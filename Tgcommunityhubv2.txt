@@ -156,7 +156,11 @@ Tabs.Main1:AddButton({
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Hiru Hub = RedZ", function()
-            loadstring(game:HttpGet("https://pastefy.app/cbtro9Hc/raw"))()
+           getgenv().Settings = {
+    JoinTeam = true,
+    Team = "Marines"-- Pirates or Marines
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KiddoHiru/BloxFruits/main/Source.lua"))()
         end)
     end
 })
