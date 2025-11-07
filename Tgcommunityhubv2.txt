@@ -108,7 +108,7 @@ Tabs.Main0:AddButton({
     Title = "Discord",
     Description = "TG Community",
     Callback = function()
-        setclipboard("https://discord.gg/MxSpY55t")
+        setclipboard("https://discord.gg/HdcnuHmu")
         Fluent:Notify({ Title="Đã sao chép", Content="Đã sao chép link Discord vào clipboard."})
     end
 })
