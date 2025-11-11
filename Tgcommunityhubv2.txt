@@ -1,9 +1,9 @@
 -- ==========================================================================================
--- CẬN ĐẸP ZAI HUB - V38 (SỬ DỤNG FLUENT UI)
+-- CẬN ĐẸP ZAI HUB - V40 (SỬ DỤNG FLUENT UI)
 -- Đã: 
--- 1. KIỂM TRA & XÁC NHẬN cơ chế tải Script Hiru Hub đã chính xác.
--- 2. Đã thêm Script Ngọc Bống Gaming và Night Hub.
--- 3. Tích hợp Logo (ID 140572217047793) cho nút nổi.
+-- 1. THAY THẾ nút nổi BẰNG HÌNH ẢNH bằng NÚT CHỮ "TG" (TextButton) theo yêu cầu.
+-- 2. Đã kiểm tra và xác nhận cơ chế tải Script Hiru Hub.
+-- 3. Đã thêm Script Ngọc Bống Gaming và Night Hub.
 -- ==========================================================================================
 
 -- Tải thư viện Fluent UI (Đảm bảo chỉ có 1 lần tải ở đầu)
@@ -59,27 +59,37 @@ local Window = Fluent:CreateWindow({
 })
 
 -- ==========================================================================================
--- 2. TẠO NÚT LOGO NỔI (SỬ DỤNG IMAGEBUTTON VÀ ID KẾT CẤU)
+-- 2. TẠO NÚT CHỮ NỔI "TG" (NÚT ẨN/HIỆN HUB)
 -- ==========================================================================================
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local ImageButton = Instance.new("ImageButton")
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
-ImageButton.Size = UDim2.new(0, 50, 0, 40)
-ImageButton.Draggable = true
-ImageButton.Image = "rbxassetid://140572217047793" -- ID KẾT CẤU LOGO
-ImageButton.ScaleType = Enum.ScaleType.Fit
-ImageButton.ImageTransparency = 0.1 
-ImageButton.BackgroundTransparency = 0 
+local TextButton = Instance.new("TextButton")
+TextButton.Parent = ScreenGui
+TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
+TextButton.Size = UDim2.new(0, 50, 0, 40)
+TextButton.Draggable = true
+TextButton.Text = "TG" -- Đã thay đổi thành "TG"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.TextSize = 20
+TextButton.TextWrapped = true
+TextButton.BackgroundTransparency = 0 
+TextButton.BorderColor3 = Color3.fromRGB(150, 0, 255) -- Màu tím nhạt
+TextButton.TextStrokeTransparency = 0
+TextButton.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+
+-- Thêm chút hiệu ứng góc bo tròn cho đẹp mắt
+local UICorner = Instance.new("UICorner")
+UICorner.Parent = TextButton
+UICorner.CornerRadius = UDim.new(0, 8) 
 
 -- DÙNG WINDOW:MINIMIZE()
-ImageButton.MouseButton1Click:Connect(function() 
+TextButton.MouseButton1Click:Connect(function() 
     task.spawn(function()
         Window:Minimize()
         
@@ -159,7 +169,7 @@ Tabs.Main1:AddButton({
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Hiru Hub = RedZ", function()
-            -- ĐÃ XÁC NHẬN CƠ CHẾ TẢI NÀY LÀ CHUẨN XÁC
+            -- Cơ chế tải đã được xác nhận là chuẩn xác
             repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
             getgenv().Settings = {
                 JoinTeam = true,
@@ -312,8 +322,8 @@ Tabs.Main5:AddButton({
     end
 })
 Tabs.Main5:AddButton({
-    Title="Spider Script", 
-    Description="script",
+    Title="Lọ Chí Tôn", 
+    Description="script giúp bạn làm lọ vương",
     Callback=function()
         SafeExecute("Spider Script", function()
             loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
@@ -335,6 +345,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Hub đã được khởi tạo thành công với Fluent UI (Ver38).",
+    Content = "Hub đã được khởi tạo thành công với TextButton 'TG' (Ver40).",
     Duration = 5
 })
