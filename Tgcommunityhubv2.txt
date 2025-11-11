@@ -1,9 +1,9 @@
 -- ==========================================================================================
--- CẬN ĐẸP ZAI HUB - V34 (SỬ DỤNG FLUENT UI)
--- Đã loại bỏ script Min Gaming Hub khỏi Tab "Script troll" theo yêu cầu.
+-- CẬN ĐẸP ZAI HUB - V38 (SỬ DỤNG FLUENT UI)
 -- Đã: 
--- 1. Cập nhật cơ chế tải Script Hiru Hub (thêm wait cho ổn định).
--- 2. Thêm Script Night Hub (Hop Server) vào Tab Blox Fruit.
+-- 1. KIỂM TRA & XÁC NHẬN cơ chế tải Script Hiru Hub đã chính xác.
+-- 2. Đã thêm Script Ngọc Bống Gaming và Night Hub.
+-- 3. Tích hợp Logo (ID 140572217047793) cho nút nổi.
 -- ==========================================================================================
 
 -- Tải thư viện Fluent UI (Đảm bảo chỉ có 1 lần tải ở đầu)
@@ -59,28 +59,27 @@ local Window = Fluent:CreateWindow({
 })
 
 -- ==========================================================================================
--- 2. TẠO NÚT TG NỔI (SỬ DỤNG MINIMIZE() ĐỂ KHẮC PHỤC LỖI)
+-- 2. TẠO NÚT LOGO NỔI (SỬ DỤNG IMAGEBUTTON VÀ ID KẾT CẤU)
 -- ==========================================================================================
 
 local ScreenGui = Instance.new("ScreenGui")
-local TextButton = Instance.new("TextButton")
-
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-TextButton.Parent = ScreenGui
-TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
-TextButton.Size = UDim2.new(0, 50, 0, 40)
-TextButton.Draggable = true
-TextButton.Text = "TG"
-TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.Font = Enum.Font.SourceSansBold
-TextButton.TextSize = 16
+local ImageButton = Instance.new("ImageButton")
+ImageButton.Parent = ScreenGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
+ImageButton.Size = UDim2.new(0, 50, 0, 40)
+ImageButton.Draggable = true
+ImageButton.Image = "rbxassetid://140572217047793" -- ID KẾT CẤU LOGO
+ImageButton.ScaleType = Enum.ScaleType.Fit
+ImageButton.ImageTransparency = 0.1 
+ImageButton.BackgroundTransparency = 0 
 
 -- DÙNG WINDOW:MINIMIZE()
-TextButton.MouseButton1Click:Connect(function() 
+ImageButton.MouseButton1Click:Connect(function() 
     task.spawn(function()
         Window:Minimize()
         
@@ -155,13 +154,12 @@ Tabs.Main1:AddButton({
         end)
     end
 })
-
--- ĐÃ CHỈNH SỬA: Cập nhật cơ chế tải Script Hiru Hub (thêm wait)
 Tabs.Main1:AddButton({
     Title="Hiru Hub = RedZ",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Hiru Hub = RedZ", function()
+            -- ĐÃ XÁC NHẬN CƠ CHẾ TẢI NÀY LÀ CHUẨN XÁC
             repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
             getgenv().Settings = {
                 JoinTeam = true,
@@ -171,19 +169,6 @@ Tabs.Main1:AddButton({
         end)
     end
 })
-
--- ĐÃ THÊM: Script Night Hub (Hop Server)
-Tabs.Main1:AddButton({
-    Title="Night Hub",
-    Description="Script Hop Server",
-    Callback=function()
-        SafeExecute("Night Hub (Hop Server)", function()
-            loadstring(game:HttpGet("https://github.com/WhiteX1208/Scripts/blob/main/HopScript.luau?raw=true"))()
-        end)
-    end
-})
-
-
 Tabs.Main1:AddButton({
     Title="Doraemon Hub V2",
     Description="Script Blox Fruit",
@@ -227,6 +212,24 @@ Tabs.Main1:AddButton({
     Callback=function()
         SafeExecute("W-Azure", function()
             loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/85e904ae1ff30824c1aa007fc7324f8f.lua"))()
+        end)
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Night Hub",
+    Description="Script Hop Sever",
+    Callback=function()
+        SafeExecute("Night Hub (Hop Sever)", function()
+            loadstring(game:HttpGet("https://github.com/WhiteX1208/Scripts/blob/main/HopScript.luau?raw=true"))()
+        end)
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Ngọc Bống Gaming",
+    Description="Script Blox Fruit",
+    Callback=function()
+        SafeExecute("Ngọc Bống Gaming", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ngocbonggaming/script/refs/heads/main/NgocBongVn.lua"))()
         end)
     end
 })
@@ -299,7 +302,6 @@ Tabs.Main4:AddButton({
 })
 
 -- Tab Script troll (MAIN5)
--- Đã xóa Min Gaming Hub khỏi đây
 Tabs.Main5:AddButton({
     Title="Gojo Script (Troll)",
     Description="Script Gojo, dùng để troll hoặc trải nghiệm",
@@ -333,6 +335,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Hub đã được khởi tạo thành công với Fluent UI (Ver34).",
+    Content = "Hub đã được khởi tạo thành công với Fluent UI (Ver38).",
     Duration = 5
 })
