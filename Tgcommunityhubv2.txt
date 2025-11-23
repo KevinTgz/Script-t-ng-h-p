@@ -1,10 +1,9 @@
 -- ==========================================================================================
--- CẬN ĐẸP ZAI HUB - V41 (SỬ DỤNG FLUENT UI)
+-- CẬN ĐẸP ZAI HUB - V42 (SỬ DỤNG FLUENT UI)
 -- Đã: 
--- 1. THÊM SCRIPT MỚI: Rubu V5.
--- 2. THÊM SCRIPT MỚI: Gravity Hub V2 (Loadstring giống Doraemon Hub V2).
--- 3. Đổi tên Doraemon Hub V2 thành Gravity Hub V1 để tránh nhầm lẫn.
--- 4. Nút nổi là TextButton "TG".
+-- 1. THÊM SCRIPT MỚI: Redz Hub.
+-- 2. THÊM SCRIPT MỚI: Arya Kaitun (bao gồm Config Lua chi tiết).
+-- 3. Nút nổi là TextButton "TG".
 -- ==========================================================================================
 
 -- Tải thư viện Fluent UI (Đảm bảo chỉ có 1 lần tải ở đầu)
@@ -144,7 +143,50 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 Tabs.Main1:AddButton({
-    Title="Rubu V5 (NEW)",
+    Title="Redz Hub (NEW)",
+    Description="Script Blox Fruit",
+    Callback=function()
+        SafeExecute("Redz Hub", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/luraobermeyer-jpg/redzhub/refs/heads/main/redzhub.lua.txt"))()
+        end)
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Arya Kaitun (NEW)",
+    Description="Script Blox Fruit (Cấu hình sẵn)",
+    Callback=function()
+        SafeExecute("Arya Kaitun", function()
+            -- Khai báo Config trước khi loadstring
+            getgenv().Config = {
+                Team = "Pirates",
+                Configuration = {
+                    HopWhenIdle = true,
+                    AutoHop = true,
+                    AutoHopDelay = 60 * 60,
+                    FpsBoost = false,
+                    BlackScreen = true
+                },
+                Items = {
+                    -- Melees
+                    AutoFullyMelees = true,
+                    -- Swords
+                    Saber = true,
+                    CursedDualKatana = false,
+                    -- Guns
+                    SoulGuitar = false,
+                    -- Upgrades
+                    RaceV2 = true
+                },
+                Settings = {
+                    StayInSea2UntilHaveDarkFragments = false
+                }
+            }
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/hhl29042008-ops/script/refs/heads/main/cac"))()
+        end)
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Rubu V5",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Rubu V5", function()
@@ -153,7 +195,7 @@ Tabs.Main1:AddButton({
     end
 })
 Tabs.Main1:AddButton({
-    Title="Gravity Hub V2 (NEW)",
+    Title="Gravity Hub V2",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Gravity Hub V2", function()
@@ -199,7 +241,7 @@ Tabs.Main1:AddButton({
     end
 })
 Tabs.Main1:AddButton({
-    Title="Gravity Hub V1", -- Đã đổi tên từ Doraemon Hub V2
+    Title="Gravity Hub V1",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Gravity Hub V1", function()
@@ -364,6 +406,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Hub đã được khởi tạo thành công với Rubu V5 và Gravity Hub V2 (Ver41).",
+    Content = "Hub đã được cập nhật với Redz Hub và Arya Kaitun (Ver42).",
     Duration = 5
 })
