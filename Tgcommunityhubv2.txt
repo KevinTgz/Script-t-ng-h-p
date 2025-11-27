@@ -1,7 +1,7 @@
 -- ==========================================================================================
--- CẬN ĐẸP ZAI HUB - V43 (SỬ DỤNG FLUENT UI)
+-- CẬN ĐẸP ZAI HUB - V44 (SỬ DỤNG FLUENT UI)
 -- Đã: 
--- 1. THÊM SCRIPT MỚI: Xeter V4.
+-- 1. THÊM SCRIPT MỚI: Quantum Onyx.
 -- 2. Nút nổi là TextButton "TG".
 -- ==========================================================================================
 
@@ -142,6 +142,15 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 Tabs.Main1:AddButton({
+    Title="Quantum Onyx (NEW)",
+    Description="Script Blox Fruit",
+    Callback=function()
+        SafeExecute("Quantum Onyx", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()
+        end)
+    end
+})
+Tabs.Main1:AddButton({
     Title="Redz Hub",
     Description="Script Blox Fruit",
     Callback=function()
@@ -203,7 +212,7 @@ Tabs.Main1:AddButton({
     end
 })
 Tabs.Main1:AddButton({
-    Title="Xeter Hub V4 (NEW)",
+    Title="Xeter Hub V4",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Xeter Hub V4", function()
@@ -416,6 +425,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Hub đã được cập nhật với Xeter V4 (Ver43).",
+    Content = "Hub đã được cập nhật với Quantum Onyx (Ver44).",
     Duration = 5
 })
