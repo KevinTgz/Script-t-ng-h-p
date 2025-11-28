@@ -49,7 +49,7 @@ end
 -- ==========================================================================================
 
 local Window = Fluent:CreateWindow({
-    Title = "Cận đẹp zai (Ver45)", -- Đã thêm Ver45 vào Title
+    Title = "Cận đẹp zai", -- Đã thêm Ver45 vào Title
     SubTitle = "Tổng hợp (Ver45)", 
     TabWidth = 110, 
     Size = UDim2.fromOffset(450, 320), 
