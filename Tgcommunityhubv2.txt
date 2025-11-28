@@ -1,8 +1,9 @@
 -- ==========================================================================================
--- CẬN ĐẸP ZAI HUB - V44 (SỬ DỤNG FLUENT UI)
+-- CẬN ĐẸP ZAI HUB - V45 (SỬ DỤNG FLUENT UI)
 -- Đã: 
--- 1. THÊM SCRIPT MỚI: Quantum Onyx.
--- 2. Nút nổi là TextButton "TG".
+-- 1. CẬP NHẬT VER LÊN V45.
+-- 2. THÊM SCRIPT MỚI: Teddyhub Vip = Banana Hub.
+-- 3. Nút nổi là TextButton "TG".
 -- ==========================================================================================
 
 -- Tải thư viện Fluent UI (Đảm bảo chỉ có 1 lần tải ở đầu)
@@ -48,8 +49,8 @@ end
 -- ==========================================================================================
 
 local Window = Fluent:CreateWindow({
-    Title = "Cận đẹp zai",
-    SubTitle = "Tổng hợp",
+    Title = "Cận đẹp zai (Ver45)", -- Đã thêm Ver45 vào Title
+    SubTitle = "Tổng hợp (Ver45)", 
     TabWidth = 110, 
     Size = UDim2.fromOffset(450, 320), 
     Acrylic = true,
@@ -142,7 +143,17 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 Tabs.Main1:AddButton({
-    Title="Quantum Onyx (NEW)",
+    Title="Teddyhub Vip = Banana Hub (NEW)",
+    Description="Script Blox Fruit",
+    Callback=function()
+        SafeExecute("Teddyhub Vip = Banana Hub", function()
+            repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub.lua"))()
+        end)
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Quantum Onyx",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Quantum Onyx", function()
@@ -425,6 +436,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Hub đã được cập nhật với Quantum Onyx (Ver44).",
+    Content = "Hub đã được cập nhật Ver45 trong tiêu đề chính.",
     Duration = 5
 })
