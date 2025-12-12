@@ -1,22 +1,63 @@
 -- ==========================================================================================
 -- CẬN ĐẸP ZAI HUB - V45 (SỬ DỤNG FLUENT UI)
--- Đã: 
--- 1. CẬP NHẬT VER LÊN V45.
--- 2. THÊM SCRIPT MỚI: Teddyhub Vip = Banana Hub.
--- 3. Nút nổi là TextButton "TG".
+-- CẬP NHẬT: Đã thêm script "Redz Hub (Real Uy Tín)" vào tab Blox Fruit.
+-- Đảm bảo: Sử dụng cơ chế tải Fluent UI an toàn để khắc phục lỗi không hiển thị màn hình.
 -- ==========================================================================================
 
--- Tải thư viện Fluent UI (Đảm bảo chỉ có 1 lần tải ở đầu)
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-repeat task.wait() until game:IsLoaded()
+local FLUENT_UI_URL = "https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
+local MAX_RETRIES = 5
+local RETRY_DELAY = 1
 
--- Gán Fluent instance vào global environment
+local Fluent = nil
+
+-- HÀM TẢI VÀ KHỞI TẠO FLUENT UI AN TOÀN
+local function LoadFluentUI()
+    for attempt = 1, MAX_RETRIES do
+        -- 1. Lấy mã nguồn script
+        local scriptSource, getErr = pcall(function()
+            return game:HttpGet(FLUENT_UI_URL)
+        end)
+
+        if not scriptSource then
+            warn(string.format("LỖI HTTP GET (Lần %d): Không thể tải mã nguồn Fluent UI. Chi tiết: %s", attempt, tostring(getErr)))
+            task.wait(RETRY_DELAY)
+            goto continue
+        end
+
+        -- 2. Thực thi mã nguồn bằng loadstring
+        local success, uiInstance = pcall(function()
+            return loadstring(scriptSource)()
+        end)
+        
+        if success and type(uiInstance) == "table" and uiInstance.CreateWindow then
+            print("THÔNG BÁO: Đã tải và khởi tạo Fluent UI thành công.")
+            return uiInstance
+        else
+            warn(string.format("LỖI LOADSTRING (Lần %d): Thực thi Fluent UI thất bại. Chi tiết: %s", attempt, tostring(uiInstance)))
+            task.wait(RETRY_DELAY)
+        end
+
+        ::continue:: -- Tiếp tục vòng lặp retry
+    end
+    
+    -- Nếu thất bại sau nhiều lần thử
+    error("LỖI KHỞI TẠO FATAL: Không thể tải và khởi tạo Fluent UI sau nhiều lần thử.")
+    return nil
+end
+
+-- Tải Fluent UI một cách đồng bộ
+Fluent = LoadFluentUI()
 getgenv().Fluent = Fluent
 
--- HÀM THỰC THI SCRIPT AN TOÀN VÀ CÓ THÔNG BÁO
-local function SafeExecute(scriptTitle, loadstringCommand)
-    local Fluent = getgenv().Fluent 
+-- Kiểm tra lần cuối trước khi tạo UI
+if not Fluent then
+    return -- Dừng thực thi nếu Fluent không tồn tại
+end
 
+-- HÀM THỰC THI SCRIPT AN TOÀN VÀ CÓ THÔNG BÁO (Đảm bảo Fluent có sẵn)
+local function SafeExecute(scriptTitle, loadstringCommand)
+    
+    -- Thông báo bắt đầu tải
     Fluent:Notify({
         Title = "TẢI SCRIPT",
         Content = string.format("Đang tải %s. Vui lòng chờ...", scriptTitle),
@@ -28,12 +69,14 @@ local function SafeExecute(scriptTitle, loadstringCommand)
     end)
     
     if success then
+        -- Thông báo thành công
         Fluent:Notify({
             Title = "THÀNH CÔNG",
             Content = string.format("%s đã tải xong và đang chạy.", scriptTitle),
             Duration = 5
         })
     else
+        -- Thông báo lỗi
         Fluent:Notify({
             Title = "❌ LỖI TẢI SCRIPT",
             Content = string.format("Không thể chạy %s. Lỗi: %s", scriptTitle, tostring(err)),
@@ -48,8 +91,9 @@ end
 -- 1. THIẾT LẬP CỬA SỔ
 -- ==========================================================================================
 
+-- Tạo cửa sổ (Window) Fluent UI. Phải dùng instance Fluent đã được tạo thành công.
 local Window = Fluent:CreateWindow({
-    Title = "Cận đẹp zai", -- Đã thêm Ver45 vào Title
+    Title = "Cận đẹp zai", 
     SubTitle = "Tổng hợp (Ver45)", 
     TabWidth = 110, 
     Size = UDim2.fromOffset(450, 320), 
@@ -70,10 +114,11 @@ local TextButton = Instance.new("TextButton")
 TextButton.Parent = ScreenGui
 TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
+-- Điều chỉnh vị trí nút TG cho dễ nhìn hơn
+TextButton.Position = UDim2.new(0.02, 0, 0.20, 0) -- Dịch sang trái hơn
 TextButton.Size = UDim2.new(0, 50, 0, 40)
 TextButton.Draggable = true
-TextButton.Text = "TG" -- Đã thay đổi thành "TG"
+TextButton.Text = "TG" 
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.Font = Enum.Font.SourceSansBold
 TextButton.TextSize = 20
@@ -91,13 +136,16 @@ UICorner.CornerRadius = UDim.new(0, 8)
 -- DÙNG WINDOW:MINIMIZE()
 TextButton.MouseButton1Click:Connect(function() 
     task.spawn(function()
-        Window:Minimize()
-        
-        Fluent:Notify({
-            Title = "Ẩn/Hiện",
-            Content = "Đã ẩn/hiện Hub. Nếu gặp lỗi, hãy dùng phím END (End Key).",
-            Duration = 5
-        })
+        if Window and Window.Minimize then
+            Window:Minimize()
+            Fluent:Notify({
+                Title = "Ẩn/Hiện",
+                Content = "Đã ẩn/hiện Hub. Dùng phím END (End Key) để tắt hoàn toàn.",
+                Duration = 5
+            })
+        else
+            warn("Cửa sổ Hub chưa được khởi tạo đầy đủ.")
+        end
     end)
 end)
 
@@ -116,6 +164,35 @@ local Tabs = {
 }
 
 -- Tab Thông Tin (MAIN0)
+-- Thêm lại nút Log Cập Nhật đã bị thiếu
+Tabs.Main0:AddButton({
+    Title = "Ver45 (Log Cập Nhật)",
+    Description = "Bấm để xem thông tin cập nhật mới nhất.",
+    Callback = function()
+        task.spawn(function()
+            Fluent:Notify({
+                Title = "TẢI SCRIPT",
+                Content = "Đang tải Log Cập Nhật Ver45. Vui lòng chờ...",
+                Duration = 2
+            })
+            
+            task.wait(1)
+            
+            Fluent:Alert({
+                Title = "Thông tin cập nhật mới nhất (Ver45)",
+                Content = "• Thêm script Blox Fruit mới: Teddyhub Vip = Banana Hub (NEW) \n• Cập nhật các liên kết (link) của các script hiện có. \n• Cải thiện tốc độ tải và xử lý lỗi script.",
+                Duration = 15
+            })
+
+            Fluent:Notify({
+                Title = "THÀNH CÔNG",
+                Content = "Log Cập Nhật Ver45 đã tải xong và hiển thị.",
+                Duration = 5
+            })
+        end)
+    end
+})
+
 Tabs.Main0:AddButton({
     Title = "Discord",
     Description = "TG Community",
@@ -170,6 +247,19 @@ Tabs.Main1:AddButton({
         end)
     end
 })
+
+-- Nút mới được thêm vào (Redz Hub Real Uy Tín)
+Tabs.Main1:AddButton({
+    Title="Redz Hub (Real Uy Tín)",
+    Description="Script Blox Fruit (Uy tín - Luarmor)",
+    Callback=function()
+        SafeExecute("Redz Hub (Real Uy Tín)", function()
+            loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20f318386e3fbf069ee3fa797cfc9f34.lua"))()
+        end)
+    end
+})
+-- Kết thúc nút mới
+
 Tabs.Main1:AddButton({
     Title="Arya Kaitun",
     Description="Script Blox Fruit (Cấu hình sẵn)",
@@ -430,12 +520,13 @@ Tabs.Main5:AddButton({
     end
 })
 
--- Lệnh quan trọng: BUỘC Hub hiển thị ban đầu
+-- Lệnh quan trọng: BUỘC Hub hiển thị ban đầu. 
+-- Lệnh này phải được gọi sau khi tất cả các Tab và thành phần đã được thêm vào Window.
 Window:Show()
 
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Hub đã được cập nhật Ver45 trong tiêu đề chính.",
+    Content = "Hub đã tải xong. Đã thêm Redz Hub (Real Uy Tín).",
     Duration = 5
 })
