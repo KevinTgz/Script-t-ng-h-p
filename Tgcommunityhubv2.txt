@@ -7,6 +7,7 @@
 -- 4. THÊM SCRIPT MỚI: Redz hub real uy tín.
 -- 5. CẬP NHẬT: BlueX-Hub V2, Night Hub (Trial).
 -- 6. THÊM TAB MỚI: The forge (Script Rifton).
+-- 7. THÊM SCRIPT MỚI VÀO TAB THE FORGE: Haze hub, Toasty Hub.
 -- ==========================================================================================
 
 -- Tải thư viện Fluent UI (Đảm bảo chỉ có 1 lần tải ở đầu)
@@ -454,13 +455,31 @@ Tabs.Main5:AddButton({
     end
 })
 
--- Tab The forge (MAIN6) - TAB MỚI
+-- Tab The forge (MAIN6)
 Tabs.Main6:AddButton({
     Title="Rifton",
     Description="Script The Forge",
     Callback=function()
         SafeExecute("Rifton", function()
             loadstring(game:HttpGet("https://rifton.top/loader.lua"))()
+        end)
+    end
+})
+Tabs.Main6:AddButton({
+    Title="Haze hub",
+    Description="Script The Forge",
+    Callback=function()
+        SafeExecute("Haze hub", function()
+            loadstring(game:HttpGet("https://haze.wtf/api/script"))()
+        end)
+    end
+})
+Tabs.Main6:AddButton({
+    Title="Toasty Hub",
+    Description="Script The Forge",
+    Callback=function()
+        SafeExecute("Toasty Hub", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/nouralddin-abdullah/ToastyHub-XD/refs/heads/main/hub-main.lua"))()
         end)
     end
 })
@@ -471,6 +490,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Hub đã cập nhật: BlueX-Hub V2, Night Hub (Trial) và Tab The forge (Rifton).",
+    Content = "Hub đã cập nhật: BlueX-Hub V2, Night Hub (Trial) và Tab The forge (Rifton, Haze, Toasty).",
     Duration = 5
 })
