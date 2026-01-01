@@ -347,7 +347,7 @@ Tabs.Main1:AddButton({
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Night Hub (Trial)", function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/Trial.luau"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/BF-Beta.lua"))()
         end)
     end
 })
