@@ -1,8 +1,9 @@
 -- ==========================================================================================
 -- CẬN ĐẸP ZAI HUB - V45 (SỬ DỤNG FLUENT UI)
 -- Cập nhật mới nhất:
--- 1. Thêm Hinishi Hub vào tab Blox Fruit.
--- 2. Đã có: BlueX V2, Night Hub Trial, Rifton, Haze, Toasty Hub.
+-- 1. Thêm Hinishi Hub.
+-- 2. Thêm Script Join Server VIP.
+-- 3. Đã có: BlueX V2, Night Hub Trial, Rifton, Haze, Toasty Hub.
 -- ==========================================================================================
 
 -- Tải thư viện Fluent UI
@@ -106,9 +107,12 @@ Tabs.Main0:AddButton({
     Callback = function() setclipboard("https://discord.gg/HdcnuHmu") end
 })
 
+-- ==========================================================================================
 -- Tab Script Blox Fruit (MAIN1)
+-- ==========================================================================================
+
 Tabs.Main1:AddButton({
-    Title="Hinishi Hub (NEW)",
+    Title="Hinishi Hub",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Hinishi Hub", function()
@@ -118,11 +122,31 @@ Tabs.Main1:AddButton({
 })
 
 Tabs.Main1:AddButton({
-    Title="Teddyhub Vip = Banana Hub (NEW)",
+    Title="Join Server VIP",
+    Description="Script hỗ trợ vào server VIP",
+    Callback=function()
+        SafeExecute("Server VIP", function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/anuragaming1/Meow_gaming/refs/heads/main/Servervip.lua.txt"))()
+        end)
+    end
+})
+
+Tabs.Main1:AddButton({
+    Title="Teddyhub Vip = Banana Hub",
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Teddyhub Vip", function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub.lua"))()
+        end)
+    end
+})
+
+Tabs.Main1:AddButton({
+    Title="Redz Hub Real",
+    Description="Script Blox Fruit",
+    Callback=function()
+        SafeExecute("Redz Hub Real", function()
+            loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20f318386e3fbf069ee3fa797cfc9f34.lua"))()
         end)
     end
 })
@@ -137,47 +161,22 @@ Tabs.Main1:AddButton({
     end
 })
 
-Tabs.Main1:AddButton({
-    Title="Night Hub (Trial)",
-    Description="Script Blox Fruit",
-    Callback=function()
-        SafeExecute("Night Hub (Trial)", function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/BF-Beta.lua"))()
-        end)
-    end
-})
-
--- (Các script cũ khác trong Tab Blox Fruit giữ nguyên...)
-Tabs.Main1:AddButton({ Title="Redz hub real uy tín", Callback=function() loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/20f318386e3fbf069ee3fa797cfc9f34.lua"))() end })
+-- (Các script khác giữ nguyên như cũ...)
+Tabs.Main1:AddButton({ Title="Arya Kaitun", Callback=function() loadstring(game:HttpGet("https://raw.githubusercontent.com/hhl29042008-ops/script/refs/heads/main/cac"))() end })
 Tabs.Main1:AddButton({ Title="Rubu V5", Callback=function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Bubu2k/Rubutv/refs/heads/main/rubuhubv5.lua"))() end })
 
 -- Tab The forge (MAIN6)
 Tabs.Main6:AddButton({
     Title="Rifton",
-    Description="Script The Forge",
-    Callback=function()
-        SafeExecute("Rifton", function()
-            loadstring(game:HttpGet("https://rifton.top/loader.lua"))()
-        end)
-    end
+    Callback=function() loadstring(game:HttpGet("https://rifton.top/loader.lua"))() end
 })
 Tabs.Main6:AddButton({
     Title="Haze hub",
-    Description="Script The Forge",
-    Callback=function()
-        SafeExecute("Haze hub", function()
-            loadstring(game:HttpGet("https://haze.wtf/api/script"))()
-        end)
-    end
+    Callback=function() loadstring(game:HttpGet("https://haze.wtf/api/script"))() end
 })
 Tabs.Main6:AddButton({
     Title="Toasty Hub",
-    Description="Script The Forge",
-    Callback=function()
-        SafeExecute("Toasty Hub", function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/nouralddin-abdullah/ToastyHub-XD/refs/heads/main/hub-main.lua"))()
-        end)
-    end
+    Callback=function() loadstring(game:HttpGet("https://raw.githubusercontent.com/nouralddin-abdullah/ToastyHub-XD/refs/heads/main/hub-main.lua"))() end
 })
 
 -- Lệnh quan trọng: BUỘC Hub hiển thị ban đầu
@@ -186,6 +185,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Đã thêm Hinishi Hub vào tab Blox Fruit thành công!",
+    Content = "Đã thêm Hinishi Hub và Server VIP thành công!",
     Duration = 5
 })
