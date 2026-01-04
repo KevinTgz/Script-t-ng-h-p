@@ -148,26 +148,25 @@ Tabs.Main0:AddButton({
 
 -- Tab Script Blox Fruit (MAIN1)
 
--- THÊM MỚI 1: Hinishi Hub
+-- THÊM MỚI: Teddy Hub Kaitun
 Tabs.Main1:AddButton({
-    Title="Hinishi Hub (MỚI)",
-    Description="Script Blox Fruit",
+    Title="Teddy Hub Kaitun",
+    Description="Script Auto Farm Full Cấu Hình",
     Callback=function()
-        SafeExecute("Hinishi Hub", function()
-            getgenv().team = "Marines"
-            _G.Translate = "Vietnamese"
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-Hinishi/Hinishi-Hub/refs/heads/main/Freemium.lua"))()
-        end)
-    end
-})
-
--- THÊM MỚI 2: Join Sever Vip
-Tabs.Main1:AddButton({
-    Title="Join Sever Vip (MỚI)",
-    Description="Script Blox Fruit",
-    Callback=function()
-        SafeExecute("Join Sever Vip", function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/anuragaming1/Meow_gaming/refs/heads/main/Servervip.lua.txt"))()
+        SafeExecute("Teddy Hub Kaitun", function()
+            repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+            getgenv().Configs = {
+                ["Quest"] = {
+                    ["Evo Race V1"] = true;
+                    ["Evo Race V2"] = true;
+                    ["RGB Haki"] = true;
+                    ["Pull Lerver"] = true;
+                };
+                Sword = {"Dual-Headed Blade";"Smoke Admiral";"Wardens Sword";"Cutlass";"Katana";"Dual Katana";"Triple Katana";"Iron Mace";"Saber";"Pole (1st Form)";"Gravity Blade";"Longsword";"Rengoku";"Midnight Blade";"Soul Cane";"Bisento";"Yama";"Tushita";"Cursed Dual Katana";};
+                Gun = {"Soul Guitar";"Kabucha";"Venom Bow";"Musket";"Flintlock";"Refined Slingshot";"Magma Blaster";"Dual Flintlock";"Cannon";"Bizarre Revolver";"Bazooka";};
+                ["FPS Booster"] = false;
+            };
+            loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/8cffffd967953fe7"))()
         end)
     end
 })
@@ -372,7 +371,7 @@ Tabs.Main1:AddButton({
     Description="Script Blox Fruit",
     Callback=function()
         SafeExecute("Night Hub (Trial)", function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/BF-Beta.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/Trial.luau"))()
         end)
     end
 })
@@ -515,6 +514,6 @@ Window:Show()
 -- Thông báo khởi tạo thành công
 Fluent:Notify({
     Title = "Cận đẹp zai Hub",
-    Content = "Đã cập nhật Hinishi Hub và Join Sever Vip thành công!",
+    Content = "Đã thêm Teddy Hub Kaitun thành công!",
     Duration = 5
 })
